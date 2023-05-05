@@ -10,7 +10,7 @@ public class SampleUsingFormat {
         System.out.println("Enter the price $ ");
         double price = scanner.nextDouble();
         double discountedPrice = price * 0.85;
-        System.out.format("Your price is $%.2f after 15%% discount.\n", discountedPrice, price);
+        System.out.format("Your price is $%.2f after 15%% discount.\n", discountedPrice);
 
     }
 
