@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SplitSample {
     public static void main(String[] args) {
-        String string = "dog, cat, horse";
+        //String string = "dog, cat, horse";
         Scanner scanner = new Scanner(System.in);
         String[] arr = scanner.nextLine().split(",");
 //        Collections.sort(arr);
