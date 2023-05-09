@@ -21,7 +21,7 @@ public class Element {
     static List<Element> elements = new ArrayList<Element>();
 
     public String getSymbol() {
-        return symbol;
+        return symbol;//
     }
 
     public String getName() {
