@@ -14,8 +14,11 @@ public class CodingBat {
         delDel("add");
         System.out.println(loneTeen(16, 17));
         StringBuilder sb = new StringBuilder();
-        int[] arrayFront = {1, 2 ,3};
-        arrayFront9(arrayFront);
+        int[] arr = {1, 1, 2, 1, 2, 3};
+//        arrayFront9(arrayFront);
+        CodingBatSolution cbs = new CodingBatSolution();
+
+        System.out.println("array123 = " + cbs.array123(arr));
         System.out.println("yey");
 
     }
