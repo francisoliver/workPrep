@@ -2,18 +2,21 @@ package Practice.classSample;
 
 public class CodingBat {
     public static void main(String[] args) {
-    System.out.println(nearHundred(89));
-    String str = "kitten";
-    int n= 0;
-    String front = str.substring(0 , n);
-    String end = str.substring(n+1 , str.length());
+        System.out.println(nearHundred(89));
+        String str = "kitten";
+        int n= 0;
+        String front = str.substring(0 , n);
+        String end = str.substring(n+1 , str.length());
 
-    System.out.println(front+end);
-    loneTeen(16, 17);
-    delDel("adelbc");
-    delDel("add");
-    System.out.println(loneTeen(16, 17));
-    StringBuilder sb = new StringBuilder();
+        System.out.println(front+end);
+        loneTeen(16, 17);
+        delDel("adelbc");
+        delDel("add");
+        System.out.println(loneTeen(16, 17));
+        StringBuilder sb = new StringBuilder();
+        int[] arrayFront = {1, 2 ,3};
+        arrayFront9(arrayFront);
+        System.out.println("yey");
 
     }
 
