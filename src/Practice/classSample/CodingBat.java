@@ -61,6 +61,19 @@ public class CodingBat {
         return count;
     }
 
+    public static boolean arrayFront9(int[] nums) {
+        boolean flag = false;
+        int size = Math.min(nums.length, 4);
+        for(int x =0; x < size; x++) {
+            if(nums[x] == 9) {
+                flag = true;
+                x=9;
+            }
+        }
+        return flag;
+    }
+
+
 
 
 }
