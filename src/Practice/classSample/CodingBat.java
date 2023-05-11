@@ -33,11 +33,12 @@ public class CodingBat {
     }
 
     public static String delDel(String str) {
-        if(!str.substring(1,4).equals("del")) {
+        /*if(!str.substring(1,4).equals("del")) {
             return str;
         }
-        String []s = str.split("del");
-        return s[0]+s[1];
+        String []s = str.split("del");*/
+//        return s[0]+s[1];
+        return "";
     }
 
     public static int countXX(String str) {
