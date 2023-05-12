@@ -68,6 +68,12 @@ public class CodingBatSolution {
         }
         return count;
     }
+    public String twoChar(String str, int index) {
+        int len = str.length();
+        int offset = len >= index + 2  ? index : 0;
+        if(index < 0) offset = 0;
+        return str.substring(offset, offset +2);
+    }
 
 
 }

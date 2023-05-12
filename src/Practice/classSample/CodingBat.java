@@ -2,17 +2,17 @@ package Practice.classSample;
 
 public class CodingBat {
     public static void main(String[] args) {
-        System.out.println(nearHundred(89));
-        String str = "kitten";
-        int n= 0;
-        String front = str.substring(0 , n);
-        String end = str.substring(n+1 , str.length());
+//        System.out.println(nearHundred(89));
+//        String str = "kitten";
+//        int n= 0;
+//        String front = str.substring(0 , n);
+//        String end = str.substring(n+1 , str.length());
 
-        System.out.println(front+end);
-        loneTeen(16, 17);
-        delDel("adelbc");
-        delDel("add");
-        System.out.println(loneTeen(16, 17));
+//        System.out.println(front+end);
+//        loneTeen(16, 17);
+//        delDel("adelbc");
+//        delDel("add");
+//        System.out.println(loneTeen(16, 17));
         StringBuilder sb = new StringBuilder();
 //        int[] arr = {1, 1, 2, 1, 2, 3};
         int[] arr = {1, 1, 2, 2, 1};
@@ -22,10 +22,14 @@ public class CodingBat {
 //        System.out.println("array123 = " + cbs.array123(arr));
 //        System.out.println("altPairs = " + cbs.altPairs("kitten"));
 //        System.out.println("altPairs = " + cbs.altPairs("Chocolate"));
-        System.out.println(cbs.noTriples(arr));
-        System.out.println(cbs.stringMatch("abc", "abc"));
-        System.out.println(cbs.stringMatch("xxcaazz", "xxbaaz"));
-        System.out.println(cbs.stringMatch("xxcaazz", "xxbaaz"));
+//        System.out.println(cbs.noTriples(arr));
+//        System.out.println(cbs.stringMatch("abc", "abc"));
+//        System.out.println(cbs.stringMatch("xxcaazz", "xxbaaz"));
+//        System.out.println(cbs.stringMatch("xxcaazz", "xxbaaz"));
+
+        System.out.println(cbs.twoChar("java", 0));
+        System.out.println(cbs.twoChar("java", 2));
+        System.out.println(cbs.twoChar("java", 3));
         System.out.println("yey");
 
     }
