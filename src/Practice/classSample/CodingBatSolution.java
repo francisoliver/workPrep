@@ -49,5 +49,25 @@ public class CodingBatSolution {
 //        return !map.containsValue(3);
     }
 
+    public int stringMatch(String a, String b) {
+        String s,l;
+        if(a.length() > b.length()) {
+            l = a;
+            s =b;
+        } else {
+            l = b;
+            s = a;
+        }
+        int count = 0;
+        for(int n = 0; n < a.length() -1; n++) {
+            int size = Math.min(Math.min(l.length() - n , s.length() -n), 2);
+            if(size < 2) break;
+            if(l.substring(n, n + size).equals(s.substring(n, n + size))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 
 }

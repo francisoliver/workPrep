@@ -23,6 +23,9 @@ public class CodingBat {
 //        System.out.println("altPairs = " + cbs.altPairs("kitten"));
 //        System.out.println("altPairs = " + cbs.altPairs("Chocolate"));
         System.out.println(cbs.noTriples(arr));
+        System.out.println(cbs.stringMatch("abc", "abc"));
+        System.out.println(cbs.stringMatch("xxcaazz", "xxbaaz"));
+        System.out.println(cbs.stringMatch("xxcaazz", "xxbaaz"));
         System.out.println("yey");
 
     }
