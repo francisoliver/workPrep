@@ -75,5 +75,15 @@ public class CodingBatSolution {
         return str.substring(offset, offset +2);
     }
 
+    public String middleThree(String str) {
+
+        int len = str.length();
+        int offset = (len - 3) / 2;
+        if(len == 3) return str;
+        StringBuilder sb = new StringBuilder(str);
+        return sb.delete(len - offset, len).delete(0, offset).toString();
+
+    }
+
 
 }
