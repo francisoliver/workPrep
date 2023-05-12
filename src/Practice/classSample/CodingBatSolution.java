@@ -1,5 +1,8 @@
 package Practice.classSample;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CodingBatSolution {
     public boolean array123(int[] nums) {
         int len = nums.length;
@@ -21,6 +24,29 @@ public class CodingBatSolution {
             sb.append(str.substring(n, n + end));
         }
         return sb.toString();
+    }
+
+    public boolean noTriples(int[] nums) {
+        int n = 0, len = nums.length;
+        boolean hasTriples = true;
+        do {
+            if(nums[n] == nums[n+1] && nums[n] == nums[n+2]) {
+                hasTriples = false;
+                n = len;
+            }
+            n++;
+        } while (n < len -2);
+        return hasTriples;
+//        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+//        for(int n : nums) {
+//            if(!map.containsKey(n)) {
+//                map.put(n, 1);
+//            } else {
+//                map.put(n, map.get(n).intValue() +1);
+//            }
+//        }
+//        System.out.println(map);
+//        return !map.containsValue(3);
     }
 
 

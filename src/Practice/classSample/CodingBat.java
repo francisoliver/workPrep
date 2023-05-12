@@ -14,14 +14,15 @@ public class CodingBat {
         delDel("add");
         System.out.println(loneTeen(16, 17));
         StringBuilder sb = new StringBuilder();
-        int[] arr = {1, 1, 2, 1, 2, 3};
+//        int[] arr = {1, 1, 2, 1, 2, 3};
+        int[] arr = {1, 1, 2, 2, 1};
 //        arrayFront9(arrayFront);
         CodingBatSolution cbs = new CodingBatSolution();
 
-        System.out.println("array123 = " + cbs.array123(arr));
-        System.out.println("altPairs = " + cbs.altPairs("kitten"));
-        System.out.println("altPairs = " + cbs.altPairs("Chocolate"));
-
+//        System.out.println("array123 = " + cbs.array123(arr));
+//        System.out.println("altPairs = " + cbs.altPairs("kitten"));
+//        System.out.println("altPairs = " + cbs.altPairs("Chocolate"));
+        System.out.println(cbs.noTriples(arr));
         System.out.println("yey");
 
     }
