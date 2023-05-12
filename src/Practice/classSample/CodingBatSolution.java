@@ -13,4 +13,15 @@ public class CodingBatSolution {
         return found;
     }
 
+    public String altPairs(String str) {
+        int len = str.length();
+        StringBuilder sb = new StringBuilder();
+        for(int n = 0; n < len ; n+=4) {
+            int end = Math.min(2, len - n);
+            sb.append(str.substring(n, n + end));
+        }
+        return sb.toString();
+    }
+
+
 }

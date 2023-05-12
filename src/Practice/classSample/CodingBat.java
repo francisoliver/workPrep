@@ -19,6 +19,9 @@ public class CodingBat {
         CodingBatSolution cbs = new CodingBatSolution();
 
         System.out.println("array123 = " + cbs.array123(arr));
+        System.out.println("altPairs = " + cbs.altPairs("kitten"));
+        System.out.println("altPairs = " + cbs.altPairs("Chocolate"));
+
         System.out.println("yey");
 
     }
