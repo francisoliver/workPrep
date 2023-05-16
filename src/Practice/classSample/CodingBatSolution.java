@@ -85,5 +85,26 @@ public class CodingBatSolution {
 
     }
 
+    public String startWord(String str, String word) {
+        StringBuilder sb = new StringBuilder();
+        int match = 0, len = word.length();
+
+        String firstWord = str.substring(0, len);
+        if(firstWord.equals(word)) {
+            return firstWord;
+        }
+        System.out.println(firstWord);
+        String secondChance = str.substring(1, len);
+        System.out.println(secondChance);
+        String x = firstWord.substring(1, firstWord.length());
+        if(x.equals(word.substring(1, word.length()))) {
+            return firstWord;
+        }
+        return "";
+    }
+
+    
+
+
 
 }
