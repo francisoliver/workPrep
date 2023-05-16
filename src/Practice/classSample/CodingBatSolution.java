@@ -96,14 +96,25 @@ public class CodingBatSolution {
         System.out.println(firstWord);
         String secondChance = str.substring(1, len);
         System.out.println(secondChance);
-        String x = firstWord.substring(1, firstWord.length());
-        if(x.equals(word.substring(1, word.length()))) {
+        String x = firstWord.substring(1);
+        if(x.equals(word.substring(1))) {
             return firstWord;
         }
         return "";
     }
 
-    
+    public String without2(String str) {
+        if(str.length()< 2) return str;
+        StringBuilder output = new StringBuilder(), sb = new StringBuilder();
+        sb.append(str.substring(0, 2));
+        if(str.endsWith(sb.toString())) {
+            output.append(str.substring(2));
+            output.append(sb.substring( 0, sb.length() - 2));
+            return output.toString();
+        }
+        return str;
+    }
+
 
 
 
