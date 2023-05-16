@@ -128,5 +128,18 @@ public class CodingBatSolution {
         }
     }
 
+    public String withoutX(String str) {
+        StringBuilder sb = new StringBuilder();
+        String x = "x";
+        String output;
+        if(str.endsWith(x)) {
+            sb.append(str.substring(0, str.length() - 1));
+        } else sb.append(str);
+        if(str.startsWith(x)) {
+            return sb.delete(0, 1).toString();
+        } else return sb.toString();
+    }
+
+
 
 }

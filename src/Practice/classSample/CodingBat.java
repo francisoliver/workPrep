@@ -28,7 +28,7 @@ public class CodingBat {
 //        System.out.println(cbs.stringMatch("xxcaazz", "xxbaaz"));
         //cbs.middleThree("solving");
 //        cbs.middleThree("Candy");
-        System.out.println(cbs.without2("HelloHe"));
+        System.out.println(cbs.withoutX("xxHi"));
 //        System.out.println(cbs.twoChar("java", 0));
 //        System.out.println(cbs.twoChar("java", 2));
 //        System.out.println(cbs.twoChar("java", 3));
