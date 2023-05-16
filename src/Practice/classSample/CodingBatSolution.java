@@ -140,6 +140,22 @@ public class CodingBatSolution {
         } else return sb.toString();
     }
 
+    public String withoutX2(String str) {
+        if(str.length()<2) return "";
+        String x = "x";
+        StringBuilder sb = new StringBuilder(str);
+
+        if(str.substring(1,2).equals(x)) {
+            sb.delete(1,2);
+        }
+
+        if(str.startsWith(x)) {
+            sb.delete(0,1);
+        }
+
+        return sb.toString();
+    }
+
 
 
 }
