@@ -115,7 +115,18 @@ public class CodingBatSolution {
         return str;
     }
 
-
+    public String minCat(String a, String b) {
+        int lenA = a.length(), lenB = b.length(), diff = 0;
+        if(lenA == lenB) {
+            return a +  b;
+        } else if(lenA> lenB) {
+            diff = lenA - lenB;
+            return a.substring(diff, lenA)+ b;
+        } else {
+            diff = lenB - lenA;
+            return a + b.substring(diff, lenB);
+        }
+    }
 
 
 }
