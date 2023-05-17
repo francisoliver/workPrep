@@ -155,7 +155,11 @@ public class CodingBatSolution {
 
         return sb.toString();
     }
-
+    public int maxTriple(int[] nums) {
+        int last = nums.length -1, mid = nums.length / 2, max = 0;
+        max = Math.max(nums[0] , nums[mid]);
+        return nums[last] > max ? last :max;
+    }
 
 
 }
