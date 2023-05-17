@@ -1,5 +1,6 @@
 package Practice.classSample;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -160,6 +161,13 @@ public class CodingBatSolution {
         max = Math.max(nums[0] , nums[mid]);
         return nums[last] > max ? last :max;
     }
+
+    public int[] maxEnd3(int[] nums) {
+        int max = Math.max(nums[0], nums[nums.length - 1]);
+        Arrays.fill(nums,max);
+        return nums;
+    }
+
 
 
 }
