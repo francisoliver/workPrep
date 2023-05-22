@@ -296,8 +296,6 @@ public class CodingBatSolution {
     }
     public String[] allSwap(String[] strings) {
         Map<String, Integer> map = new HashMap<>();
-        //first char as key
-        //index in the array as value
 
         for (int n = 0; n < strings.length; n++) {
             String x = strings[n].substring(0,1);
@@ -344,6 +342,39 @@ public class CodingBatSolution {
         }
 
         return stringBuilder.toString();
+    }
+
+    public String[] firstSwap(String[] strings) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (int n = 0; n < strings.length; n++) {
+            char x = strings[n].charAt(0);
+            if(!map.containsKey(x)) {
+                map.put(x, n);
+            } else {
+                int i = map.get(x);
+                if(i>=0) {
+                    String swap = strings[i];
+                    strings[i] = strings[n];
+                    strings[n] = swap;
+                    map.put(x, -1);
+                }
+            }
+        }
+        return strings;
+    }
+
+    public Map<String, String> firstChar(String[] strings) {
+        Map<String, String> map = new HashMap<>();
+
+        for (String s: strings) {
+            String firstChar = s.substring(0, 1);
+            if(map.containsKey(firstChar)) {
+                map.put(firstChar, map.get(firstChar) + s);
+            } else {
+                map.put(firstChar, s);
+            }
+        }
+        return map;
     }
 
 
