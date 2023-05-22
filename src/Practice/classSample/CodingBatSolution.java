@@ -203,6 +203,13 @@ public class CodingBatSolution {
         }
         return map;
     }
+    public Map<String, String> mapAB(Map<String, String> map) {
+        String a = "a", b = "b";
+        if(map.containsKey(a) && map.containsKey(b)) {
+            map.put("ab", map.get(a)+map.get(b));
+        }
+        return map;
+    }
 
 
 
