@@ -210,6 +210,17 @@ public class CodingBatSolution {
         }
         return map;
     }
+    public Map<String, String> topping3(Map<String, String> map) {
+        // key potato has value -> set this values as fries
+        // key salad has value -> set this values as spinach
+        if(map.containsKey("potato")) {
+            map.put("fries", map.get("potato"));
+        }
+        if(map.containsKey("salad")) {
+            map.put("spinach", map.get("salad"));
+        }
+        return map;
+    }
 
 
 
