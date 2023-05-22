@@ -254,6 +254,19 @@ public class CodingBatSolution {
         return map;
     }
 
+//map 2 activity
+
+    public Map<String, Integer> wordCount(String[] strings) {
+        Map<String, Integer> map = new HashMap<>();
+        for(String x : strings) {
+            if(map.containsKey(x)) {
+                map.put(x, map.get(x) + 1);
+            } else {
+                map.put(x, 1);
+            }
+        }
+        return map;
+    }
 
 
 
