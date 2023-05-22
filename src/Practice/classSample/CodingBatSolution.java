@@ -221,6 +221,38 @@ public class CodingBatSolution {
         }
         return map;
     }
+    public Map<String, String> mapShare(Map<String, String> map) {
+        if(map.containsKey("a")) {
+            map.put("b", map.get("a"));
+        }
+        map.remove("c");
+        return map;
+    }
+
+    public Map<String, String> mapAB2(Map<String, String> map) {
+        if(map.containsKey("a")&&map.containsKey("b") && map.get("a").equals(map.get("b"))) {
+            map.remove("a");
+            map.remove("b");
+        }
+        return map;
+    }
+
+    public Map<String, String> mapAB4(Map<String, String> map) {
+        if(map.containsKey("a")&&map.containsKey("b")) {
+            String a = map.get("a"), b = map.get("b");
+            String result = "";
+            if(a.length()>b.length()) {
+                result = a;
+            } else if (a.length()<b.length()) {
+                result = b;
+            } else if(a.length() == b.length()) {
+                map.put("a", "");
+                map.put("b", "");
+            }
+            if(result.length()>0) map.put("c", result);
+        }
+        return map;
+    }
 
 
 
