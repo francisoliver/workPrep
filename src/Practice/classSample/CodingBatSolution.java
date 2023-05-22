@@ -195,6 +195,16 @@ public class CodingBatSolution {
         return map;
     }
 
+    public Map<String, String> mapBully(Map<String, String> map) {
+        String a = "a", b = "b";
+        if(map.containsKey(a)) {
+            map.put(b, map.get(a));
+            map.put(a, "");
+        }
+        return map;
+    }
+
+
 
 
 
