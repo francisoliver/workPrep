@@ -268,6 +268,84 @@ public class CodingBatSolution {
         return map;
     }
 
+    public Map<String, Integer> wordLen(String[] strings) {
+        Map<String, Integer> map = new HashMap<>();
+        for(String x : strings) {
+            map.put(x, x.length());
+        }
+        return map;
+    }
+
+    public Map<String, String> pairs(String[] strings) {
+        Map<String, String> map = new HashMap<>();
+        for(String x : strings) {
+            int len = x.length();
+            map.put(x.substring(0,1), x.substring(len -1));
+        }
+        return map;
+    }
+
+    public Map<String, Boolean> wordMultiple(String[] strings) {
+        Map<String, Boolean> map = new HashMap<>();
+        for(String x : strings) {
+            if(map.containsKey(x)) {
+                map.put(x, true);
+            } else map.put(x, false);
+        }
+        return map;
+    }
+    public String[] allSwap(String[] strings) {
+        Map<String, Integer> map = new HashMap<>();
+        //first char as key
+        //index in the array as value
+
+        for (int n = 0; n < strings.length; n++) {
+            String x = strings[n].substring(0,1);
+            if(!map.containsKey(x)) {
+                map.put(x, n);
+            } else {
+                int i = map.get(x);
+                String swap = strings[i];
+                strings[i] = strings[n];
+                strings[n] = swap;
+                map.remove(x);
+            }
+        }
+        System.out.println(map);
+        return strings;
+        //"ax", "bx", "cx", "cy", "by", "ay", "aaa", "azz"
+        //"ay", "by", "cy", "cx", "bx", "ax", "azz", "aaa"
+        //"ay", "by", "cy", "cx", "bx", "ax", "azzz", "axx"
+    }
+
+
+    public Map<String, Integer> word0(String[] strings) {
+        Map<String, Integer> map = new HashMap<>();
+        for(String s: strings) {
+            map.put(s, 0);
+        }
+        return map;
+    }
+
+    public String wordAppend(String[] strings) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        Map<String, Integer> map = new HashMap<>();
+        for(String s: strings) {
+            if(map.containsKey(s)) {
+                int count = map.get(s);
+                if (count % 2 == 1) {
+                    stringBuilder.append(s);
+                }
+                map.put(s, map.get(s) + 1);
+            } else {
+                map.put(s, 1);
+            }
+        }
+
+        return stringBuilder.toString();
+    }
+
 
 
 

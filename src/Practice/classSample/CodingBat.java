@@ -28,10 +28,12 @@ public class CodingBat {
 //        System.out.println(cbs.stringMatch("xxcaazz", "xxbaaz"));
         //cbs.middleThree("solving");
 //        cbs.middleThree("Candy");
-        System.out.println(cbs.withoutX2("xHi"));
+        //System.out.println(cbs.withoutX2("xHi"));
 //        System.out.println(cbs.twoChar("java", 0));
 //        System.out.println(cbs.twoChar("java", 2));
 //        System.out.println(cbs.twoChar("java", 3));
+        String[] s = {"ax", "bx", "cx", "cy", "by", "ay", "aaa", "azz"};
+        cbs.allSwap(s);
         System.out.println("yey");
 
     }
