@@ -377,6 +377,29 @@ public class CodingBatSolution {
         return map;
     }
 
+    public int greenTicket(int a, int b, int c) {
+        if(a!=b && b!=c && a!=c) return 0;
+        if(a==b&&b==c) return 20;
+        if(a==b || b==c||a == c) {
+            return 10;
+        }
+        return 0;
+    }
+    public boolean inOrderEqual(int a, int b, int c, boolean equalOk) {
+        boolean res = false;
+        if(!equalOk) {
+            if(a<b&&b<c) {
+                res = true;
+            }
+        } else {
+            if(a<=b&&b<=c) {
+                res = true;
+            }
+        }
+
+        return res;
+    }
+
 
 
 

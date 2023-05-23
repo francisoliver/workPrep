@@ -32,8 +32,12 @@ public class CodingBat {
 //        System.out.println(cbs.twoChar("java", 0));
 //        System.out.println(cbs.twoChar("java", 2));
 //        System.out.println(cbs.twoChar("java", 3));
-        String[] s = {"ax", "bx", "cx", "cy", "by", "ay", "aaa", "azz"};
-        cbs.allSwap(s);
+//        String[] s = {"ax", "bx", "cx", "cy", "by", "ay", "aaa", "azz"};
+//        cbs.allSwap(s);
+        //;
+//        System.out.println(cbs.greenTicket(0,1,1));
+//        System.out.println(cbs.greenTicket(1,0,1));
+        System.out.println(cbs.inOrderEqual(1,2,3, false));
         System.out.println("yey");
 
     }
