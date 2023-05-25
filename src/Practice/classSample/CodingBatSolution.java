@@ -414,6 +414,17 @@ public class CodingBatSolution {
         return map.containsValue(2);
     }
 
+    public int matchUp(String[] a, String[] b) {
+        int len = a.length, ctr = 0;
+        for(int n=0; n< len;n++) {
+            if(a[n].length()>0 && b[n].length()>0 ) {
+                char x = a[n].charAt(0), y = b[n].charAt(0);
+                if(x==y) ctr++;
+            }
+        }
+        return ctr;
+    }
+
 
 
 
