@@ -400,6 +400,21 @@ public class CodingBatSolution {
         return res;
     }
 
+    public boolean lastDigit(int a, int b, int c) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int[] x = {a%10, b%10,c%10};
+        for(int n: x) {
+            if(map.containsKey(n)) {
+                map.put(n, map.get(n) + 1);
+            } else {
+                map.put(n, 1);
+            }
+
+        }
+        return map.containsValue(2);
+    }
+
+
 
 
 
