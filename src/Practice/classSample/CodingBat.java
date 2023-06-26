@@ -39,8 +39,14 @@ public class CodingBat {
 //        System.out.println(cbs.greenTicket(1,0,1));
 //        System.out.println(cbs.inOrderEqual(1,2,3, false));
 //        System.out.println(cbs.lastDigit(23, 19, 13));
-        System.out.println(cbs.makeBricks(6,1,11));
+//        System.out.println(cbs.makeBricks(6,1,11));
 //        System.out.println(cbs.makeBricks(7,1,13));
+//        System.out.println(cbs.makeChocolate(4, 1, 4));
+//        System.out.println(cbs.roundSum(16, 17, 18));
+//        System.out.println(cbs.closeFar(10, 10, 8) );
+//        System.out.println(cbs.closeFar(8, 6, 9) );
+//        System.out.println(cbs.closeFar(8, 6, 9) );
+        System.out.println(cbs.closeFar(1, 2, 3) );
         System.out.println("yey");
 
     }

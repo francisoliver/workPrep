@@ -2,6 +2,7 @@ package Practice.classSample;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class CodingBatSolution {
@@ -435,7 +436,6 @@ public class CodingBatSolution {
                 int R = goal % currentValue;
                 if(R <= small) {
                     currentValue+= R;
-                } else {
                 }
             } else {
                 currentValue = big * 5;
@@ -444,7 +444,6 @@ public class CodingBatSolution {
                     currentValue += diff;
                 }
             }
-        System.out.println(currentValue);
         return currentValue == goal;
     }
 
@@ -470,9 +469,87 @@ public class CodingBatSolution {
         return output;
     }
 
+    public int makeChocolate(int small, int big, int goal) {
+
+        int bigTotal = big * 5;
+        while (bigTotal > goal) {
+            bigTotal -= 5;
+        }
+        int amount = goal - bigTotal;
+        if (amount <= small) {
+            return amount;
+        }
+        else {
+            return -1;
+        }
+    }
 
 
+    public boolean evenlySpaced(int a, int b, int c) {
+        int[] arr = {a, b, c};
+        Arrays.sort(arr);
+        return arr[0] - arr[1] == arr[1] - arr[2];
+    }
 
+    public int luckySum(int a, int b, int c) {
+        int[] arr = {a, b, c};
+        int sum = 0;
+        boolean flag13 = false;
+        for(int n : arr) {
+            if(13 == n) flag13 = true;
+            if(!flag13) {
+                sum += n;
+            }
+        }
+        return sum;
+    }
+
+    public int roundSum(int a, int b, int c) {
+        int[] arr = {a, b, c};
+        int sum = 0;
+        for(int n: arr) {
+            sum += round10(n);
+        }
+        return sum;
+    }
+    public int round10(int number) {
+        int remainder = number % 10;
+        if(remainder < 5) {
+            return number - remainder;
+        }
+        return (number  - remainder) + 10;
+    }
+
+
+    public int noTeenSum(int a, int b, int c) {
+        int[] arr = {a, b, c};
+        int sum = 0;
+        for(int n: arr) {
+            sum += fixTeen(n);
+        }
+        return sum;
+    }
+
+    public int fixTeen(int n) {
+        HashSet<Integer> set = new HashSet<>();
+        set.add(13);
+        set.add(14);
+        set.add(17);
+        set.add(18);
+        set.add(19);
+        return set.contains(n) ? 0: n;
+    }
+
+    public boolean closeFar(int a, int b, int c) {
+        int ab = Math.abs(a - b), ac = Math.abs(a - c);
+        if(ab <= 1) {
+            return Math.abs(a - c) >= 2 && Math.abs(b - c) >= 2;
+        }
+        if(ac <= 1) {
+            return Math.abs(a - b) >= 2 && Math.abs(b - c) >= 2;
+        }
+        return false;
+    }
 
 
 }
