@@ -448,6 +448,31 @@ public class CodingBatSolution {
         return currentValue == goal;
     }
 
+    public int loneSum(int a, int b, int c) {
+        Map<Integer, Boolean > map = new HashMap<>();
+        int[] arr = {a, b, c};
+        for (int n :arr) {
+            if(map.containsKey(n)) {
+                map.put(n, false);
+            } else {
+                map.put(n, true);
+            }
+        }
+        int output = 0;
+
+        for (Map.Entry<Integer, Boolean> entry : map.entrySet()) {
+            Integer k = entry.getKey();
+            Boolean v = entry.getValue();
+            if(v) {
+                output+=k;
+            }
+        }
+        return output;
+    }
+
+
+
+
 
 
 }
