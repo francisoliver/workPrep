@@ -38,7 +38,9 @@ public class CodingBat {
 //        System.out.println(cbs.greenTicket(0,1,1));
 //        System.out.println(cbs.greenTicket(1,0,1));
 //        System.out.println(cbs.inOrderEqual(1,2,3, false));
-        System.out.println(cbs.lastDigit(23, 19, 13));
+//        System.out.println(cbs.lastDigit(23, 19, 13));
+        System.out.println(cbs.makeBricks(6,1,11));
+//        System.out.println(cbs.makeBricks(7,1,13));
         System.out.println("yey");
 
     }
