@@ -426,6 +426,27 @@ public class CodingBatSolution {
     }
 //todo:
 
+    public boolean makeBricks(int small, int big, int goal) {
+
+        int currentValue = 0;
+            int Q = goal / 5;
+            if(Q <= big) {
+                currentValue += Q * 5;
+                int R = goal % currentValue;
+                if(R <= small) {
+                    currentValue+= R;
+                } else {
+                }
+            } else {
+                currentValue = big * 5;
+                int diff = goal - currentValue;
+                if(diff <= small) {
+                    currentValue += diff;
+                }
+            }
+        System.out.println(currentValue);
+        return currentValue == goal;
+    }
 
 
 
