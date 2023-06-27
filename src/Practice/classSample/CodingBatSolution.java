@@ -550,6 +550,34 @@ public class CodingBatSolution {
         }
         return false;
     }
+    public int countCode(String str) {
+        str = str.toLowerCase();
+        int codeCount = 0, len = str.length();
+        for(int ctr =0; ctr < len - 3; ctr++) {
+            String _str = str.substring(ctr, ctr + 4);
+            if(_str.startsWith("co") &&_str.endsWith("e")) {
+                codeCount++;
+            }
+        }
+        return codeCount;
+    }
+
+    public boolean xyzMiddle(String str) {
+        String xyz = "xyz";
+        int len = str.length(),mid = (len / 2);
+        if(len < 3) return false;
+        boolean b = str.substring(mid - 1).startsWith(xyz);
+        if(len % 2 == 1) {
+            return b;
+        }
+        //odd
+        if(str.substring(mid - 2).startsWith(xyz)) {
+            return true;
+        }
+        return b;
+
+    }
+
 
 
 }

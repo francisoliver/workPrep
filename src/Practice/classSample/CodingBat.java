@@ -46,7 +46,11 @@ public class CodingBat {
 //        System.out.println(cbs.closeFar(10, 10, 8) );
 //        System.out.println(cbs.closeFar(8, 6, 9) );
 //        System.out.println(cbs.closeFar(8, 6, 9) );
-        System.out.println(cbs.closeFar(1, 2, 3) );
+//        System.out.println(cbs.closeFar(1, 2, 3) );
+//        System.out.println(cbs.countCode("codexxcode") );
+//        System.out.println(cbs.xyzMiddle("AxyzBB") );
+        System.out.println(cbs.xyzMiddle("AAxyzB") );
+
         System.out.println("yey");
 
     }
