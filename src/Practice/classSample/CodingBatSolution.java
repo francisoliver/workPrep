@@ -578,6 +578,69 @@ public class CodingBatSolution {
 
     }
 
+    public boolean catDog(String str) {
+        String dog = "dog", cat = "cat";
+        int len = str.length(), dogCount = 0, catCount = 0;
+        for(int ctr = 0; ctr < len - 2; ctr++) {
+            String animal = str.substring(ctr, ctr + 3);
+            if(animal.equals(dog)) {
+                dogCount++;
+            }
+            if(animal.equals(cat)) {
+                catCount++;
+            }
+        }
+        return dogCount == catCount;
+    }
+
+    public String zipZap(String str) {
+
+        int len = str.length();
+        StringBuilder sb = new StringBuilder();
+        int ctr = 0;
+        while(ctr < len) {
+            String s = "", append = "";
+            int x = 0;
+            if(ctr + 2 < len) {
+                x = 3;
+            } else {
+                x = 1;
+            }
+            s = str.substring(ctr, ctr + x);
+            if(s.startsWith("z") && s.endsWith("p")) {
+                append = "zp";
+                ctr+=3;
+            } else {
+                ctr++;
+                append = s.substring(0, 1);
+            }
+            sb.append(append);
+        }
+        return sb.toString();
+    }
+    public boolean xyBalance(String str) {
+        if(str=="x") return false;
+        int ctr = 0;
+        int indexOfX  = 0, len = str.length(), indexOfY = 0;
+
+        while(ctr < len) {
+            str = str.substring(ctr);
+            indexOfX = str.indexOf("x");
+            if(indexOfX > - 1 ) {
+                str = str.substring(indexOfX +1);
+                indexOfY = str.indexOf("y");
+                if(indexOfY > -1) {
+                    ctr = indexOfY + 1;
+                } else {
+                    ctr = len + 1;
+                }
+            } else {
+                ctr = len + 1;
+            }
+        }
+        return indexOfY > indexOfX && indexOfY!= -1;
+    }
+
 
 
 }
