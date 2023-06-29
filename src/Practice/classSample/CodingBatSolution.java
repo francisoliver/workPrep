@@ -641,6 +641,111 @@ public class CodingBatSolution {
         return indexOfY > indexOfX && indexOfY!= -1;
     }
 
+    public String oneTwo(String str) {
+        int len = str.length(), counter = 0;
+        StringBuilder stringBuilder = new StringBuilder();
+        while (counter < len) {
+            if(str.length()>=3) {
+                stringBuilder.append(str.substring(1,3));
+                stringBuilder.append(str.substring(0, 1));
+                str = str.substring( 3);
+            }
+            counter+=3;
+        }
+        return stringBuilder.toString();
+    }
+
+    public String getSandwich(String str) {
+        int buffer = str.indexOf("bread");
+        buffer = Math.abs(buffer - 5);
+        str = str.substring(str.indexOf("bread")+ 5);
+        StringBuilder stringBuilder = new StringBuilder(str);
+        int index = stringBuilder.reverse().indexOf("daerb");
+        stringBuilder = stringBuilder.reverse();
+        return stringBuilder.substring(0, stringBuilder.length() - (5+buffer - 1    ));
+    }
+
+    public String wordEnds(String str, String word) {
+        int len = word.length(), charIndex = 0;
+        StringBuilder sb = new StringBuilder();
+        while(str.contains(word)) {
+            charIndex = str.indexOf(word);
+            if(charIndex > 0) {
+                sb.append(str.substring(charIndex - 1, charIndex));
+            }
+            str = str.substring(charIndex + len);
+            if(str.length() > 0) {
+                sb.append(str.substring(0,1));
+            }
+        }
+        return sb.toString();
+    }
+
+    public boolean bobThere(String str) {
+        int ctr = 0;
+        String b = "b";
+        while(ctr < str.length() - 2) {
+            String s = str.substring(ctr, ctr + 3);
+            if(s.startsWith(b) && s.endsWith(b)) {
+                return true;
+            }
+            ctr++;
+        }
+        return false;
+    }
+
+    public String plusOut(String str, String word) {
+        StringBuilder sb = new StringBuilder();
+        int prev = 0, len = str.length();
+        while(prev < len) {
+            int index = str.indexOf(word);
+            if(index == 0) {
+                sb.append(word);
+                prev = index + word.length();
+            } else if(index > 0) {
+                sb.append(createPlus(index)).append(word);
+                prev = index + word.length();
+            } else {
+                sb.append(createPlus(str.length()));
+                prev = len + 1;
+            }
+            if(prev > len) break;
+            str = str.substring(prev);
+        }
+
+        return sb.toString();
+
+    }
+    public String createPlus(int i) {
+        StringBuilder sb = new StringBuilder();
+        while(i>0) {
+            sb.append("+");
+            i--;
+        }
+        return sb.toString();
+    }
+
+    public String repeatFront(String str, int n) {
+        StringBuilder sb = new StringBuilder();
+        while(n > 0) {
+            sb.append(str.substring(0, n));
+            n--;
+        }
+        return sb.toString();
+    }
+
+    public int countHi(String str) {
+        int numberOfHi = 0;
+        while(str.contains("hi")) {
+            str = str.substring(str.indexOf("hi") + 2);
+            numberOfHi++;
+        }
+        return numberOfHi;
+    }
+
+
+
+
 
 
 }
