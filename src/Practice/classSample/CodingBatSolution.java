@@ -825,4 +825,20 @@ public class CodingBatSolution {
         return starCount == matchCount;
     }
 
+    public boolean xyzThere(String str) {
+        String xyz = "xyz";
+        boolean xyzFound = false;
+        if(!str.contains(xyz)) {
+            return false;
+        }
+        for(int ctr = 0; ctr < str.length() -2; ctr++) {
+            if(str.substring(ctr, ctr + 3).equals(xyz)) {
+                if(!(ctr > 0 && str.charAt(ctr - 1) == '.')) {
+                    xyzFound = true;
+                }
+            }
+        }
+        return xyzFound;
+    }
+
 }
