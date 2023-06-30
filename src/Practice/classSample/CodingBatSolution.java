@@ -841,4 +841,28 @@ public class CodingBatSolution {
         return xyzFound;
     }
 
+    public int countEvens(int[] nums) {
+        long l = Arrays.stream(nums)
+                .filter(num -> num % 2 == 0)
+                .count();
+        return (int) l;
+    }
+
+    public boolean has12(int[] nums) {
+        boolean numberOfOnes = false, numberOfTwos = false;
+        for(int n : nums) {
+            if(n == 1) {
+                numberOfOnes = true;
+            }
+            if(n==2 && numberOfOnes) {
+                numberOfTwos = true;
+            }
+
+        }
+        return numberOfTwos;
+    }
+
+    
+
+
 }
