@@ -1,9 +1,7 @@
 package Practice.classSample;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CodingBatSolution {
     public boolean array123(int[] nums) {
@@ -666,19 +664,19 @@ public class CodingBatSolution {
     }
 
     public String wordEnds(String str, String word) {
-        int len = word.length(), charIndex = 0;
-        StringBuilder sb = new StringBuilder();
-        while(str.contains(word)) {
-            charIndex = str.indexOf(word);
-            if(charIndex > 0) {
-                sb.append(str.substring(charIndex - 1, charIndex));
-            }
-            str = str.substring(charIndex + len);
-            if(str.length() > 0) {
-                sb.append(str.substring(0,1));
-            }
+
+        StringBuilder newStr = new StringBuilder();
+
+        for(int i = 0; i < str.length()-word.length()+1; i++){
+            boolean equals = str.substring(i, i + word.length()).equals(word);
+            if(i > 0 && equals)
+                newStr.append(str.charAt(i-1));
+
+            if(i < str.length()-word.length() && equals)
+                newStr.append(str.charAt(i+word.length()));
         }
-        return sb.toString();
+
+        return newStr.toString();
     }
 
     public boolean bobThere(String str) {
@@ -744,7 +742,64 @@ public class CodingBatSolution {
     }
 
 
+    public String doubleChar(String str) {
+        StringBuilder sb = new StringBuilder();
+        for (char i : str.toCharArray()) {
+            sb.append(i).append(i);
+        }
+        return sb.toString();
+    }
 
+    public String mixString(String a, String b) {
+
+        StringBuilder sb = new StringBuilder();
+        for(int index = 0; index < a.length() || index < b.length(); index++) {
+            if(index < a.length()) {
+                sb.append(a.substring(index, index + 1));
+            }
+            if(index < b.length()) {
+                sb.append(b.substring(index, index + 1));
+            }
+        }
+
+        return sb.reverse().toString();
+
+    }
+
+    public String starOut(String str) {
+        Stack<Character> stack = new Stack<>();
+        boolean shouldPop = true, previousAsterisk = false;
+        for(char c: str.toCharArray()) {
+            if(c == '*') {
+                previousAsterisk = true;
+                if(shouldPop) {
+                    if(!stack.empty()){
+                        stack.pop();
+                    }
+                    shouldPop = false;
+                }
+            }
+            else {
+
+              if(!previousAsterisk) {
+                  stack.push(c);
+                  shouldPop = true;
+              }
+            previousAsterisk = false;
+            }
+        }
+        return stack.stream().map(s -> s.toString()).collect(Collectors.joining(""));
+    }
+    public String repeatEnd(String str, int n) {
+        int counter = n;
+        String s = str.substring(str.length() - n);
+        StringBuilder stringBuilder = new StringBuilder();
+        while(counter > 0) {
+            stringBuilder.append(s);
+            counter--;
+        }
+        return stringBuilder.toString();
+    }
 
 
 

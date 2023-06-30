@@ -57,11 +57,13 @@ public class CodingBat {
 //        System.out.println(cbs.getSandwich("breadbreadbreadbread"));
         //System.out.println(cbs.getSandwich("xxbreadjambreadyy"));
 //        System.out.println(cbs.wordEnds("abcXY123XYijk", "XY"));
+//        System.out.println(cbs.wordEnds("XY123XY", "XY"));
 //        System.out.println(cbs.wordEnds("XY1XY", "XY"));
 //        System.out.println(cbs.wordEnds("XYXY", "XY"));
 //        System.out.println(cbs.plusOut("12xy34", "1"));
-        System.out.println(cbs.plusOut("12xy34xyabcxy", "xy"));
-
+//        System.out.println(cbs.plusOut("12xy34xyabcxy", "xy"));
+//        System.out.println(cbs.mixString("xxxx", "There"));
+//        System.out.println(cbs.starOut("*a"));
 
 
         System.out.println("yey");
