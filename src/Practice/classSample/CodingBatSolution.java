@@ -654,13 +654,10 @@ public class CodingBatSolution {
     }
 
     public String getSandwich(String str) {
-        int buffer = str.indexOf("bread");
-        buffer = Math.abs(buffer - 5);
-        str = str.substring(str.indexOf("bread")+ 5);
-        StringBuilder stringBuilder = new StringBuilder(str);
-        int index = stringBuilder.reverse().indexOf("daerb");
-        stringBuilder = stringBuilder.reverse();
-        return stringBuilder.substring(0, stringBuilder.length() - (5+buffer - 1    ));
+        String bread = "bread";
+        int start = str.indexOf(bread), end = str.lastIndexOf(bread);
+        if(start == end) return "";
+        return str.substring(start + bread.length(), end);
     }
 
     public String wordEnds(String str, String word) {
