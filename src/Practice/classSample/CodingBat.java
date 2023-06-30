@@ -64,6 +64,7 @@ public class CodingBat {
 //        System.out.println(cbs.plusOut("12xy34xyabcxy", "xy"));
 //        System.out.println(cbs.mixString("xxxx", "There"));
 //        System.out.println(cbs.starOut("*a"));
+        System.out.println(cbs.sameStarChar("xy*yzz"));
 
 
         System.out.println("yey");
