@@ -801,6 +801,31 @@ public class CodingBatSolution {
         return stringBuilder.toString();
     }
 
+    public boolean sameStarChar(String str) {
+        String pre = "", post ="";
+        int len = str.length(), starCount = 0, matchCount = 0;
+        if(!str.contains("*")) {
+            return true;
+        }
+        for(int ctr =0; ctr< str.length() - 1; ctr++) {
+            if(str.charAt(ctr) ==('*')) {
+                starCount++;
+                if( ctr > 0 ) {
+                    pre = str.substring(ctr - 1, ctr );
+                } else {
+                    matchCount++;
+                }
+                if (ctr < len && pre.length() > 0 ) {
+                    post = str.substring(ctr + 1, ctr + 2);
+                    if(pre.equals(post)) {
+                        matchCount++;
+                    }
+                    pre =""; post="";
+                }
+            }
+        }
 
+        return starCount == matchCount;
+    }
 
 }
