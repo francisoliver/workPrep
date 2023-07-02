@@ -862,7 +862,106 @@ public class CodingBatSolution {
         return numberOfTwos;
     }
 
-    
+    public int sum13(int[] nums) {
+        int sum = 0; boolean previous13 = false;
+        for(int n : nums) {
+            if(13 == n) {
+                previous13 = true;
+            } else if (previous13){
+                previous13 = false;
+            } else {
+                sum+= n;
+            }
+        }
+        return sum;
+    }
 
+    public int[] evenOdd(int[] nums) {
+        int [] rev = new int[nums.length];
+        int len = nums.length, ctrE = 0,ctrO = len -1;
+            for(int n: nums) {
+                if(n%2==0) {
+                    rev[ctrE] = n;
+                    ctrE++;
+                } else  {
+                    rev[ctrO] = n;
+                    ctrO--;
+                }
+            }
+            nums = rev;
+        return nums;
+    }
+    public boolean isEverywhere(int[] nums, int val) {
+        for(int ctr=0; ctr < nums.length - 1; ctr++) {
+            if(nums[ctr] != val && nums[ctr+1]!=val) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String[] fizzArray2(int n) {
+        String[] s = new String[n];
+        for(int ctr = 0; ctr < n; ctr++) {
+            s[ctr] = String.valueOf(ctr);
+        }
+        return s;
+    }
+
+    public int[] post4(int[] nums) {
+        int indexOf4 = 0, ctr = nums.length - 1;
+        while(ctr >= 0) {
+            if(4 == nums[ctr]) {
+                indexOf4 = ctr + 1;
+                break;
+            }
+            ctr--;
+        }
+        int[] arr = new int[nums.length - indexOf4];
+        for(int x = indexOf4, y=0; x < nums.length; x++, y++) {
+            arr[y] = nums[x];
+        }
+        return arr;
+    }
+
+    public boolean sum28(int[] nums) {
+        int sum = 0;
+        for(int n: nums) {
+            if(2 == n) {
+                sum+=2;
+            }
+        }
+        return 8 == sum;
+    }
+
+    public int[] fizzArray(int n) {
+        int[] arr = new int[n];
+        for(int ctr =0; ctr < n -1; ctr++) {
+            arr[ctr] = ctr;
+        }
+        return arr;
+    }
+
+    public boolean tripleUp(int[] nums) {
+        for(int ctr= 0; ctr < nums.length -2; ctr++) {
+            if(nums[ctr] + 1 == nums[ctr +1 ] && nums[ctr] + 2 == nums[ctr + 2 ]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean no14(int[] nums) {
+        boolean oneFound = false, fourFound = false;
+        for(int n: nums)   {
+            if(n == 1 ) {
+                oneFound = true;
+            }
+            if( n ==4 ) {
+                fourFound = true;
+            }
+        }
+        return (!(oneFound && fourFound));
+    }
 
 }

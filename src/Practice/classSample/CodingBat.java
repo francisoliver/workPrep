@@ -15,7 +15,7 @@ public class CodingBat {
 //        System.out.println(loneTeen(16, 17));
         StringBuilder sb = new StringBuilder();
 //        int[] arr = {1, 1, 2, 1, 2, 3};
-        int[] arr = {1, 1, 2, 2, 1};
+//        int[] arr = {1, 1, 2, 2, 1};
 //        arrayFront9(arrayFront);
         CodingBatSolution cbs = new CodingBatSolution();
 
@@ -65,12 +65,23 @@ public class CodingBat {
 //        System.out.println(cbs.mixString("xxxx", "There"));
 //        System.out.println(cbs.starOut("*a"));
 //        System.out.println(cbs.sameStarChar("xy*yzz"));
-        System.out.println(cbs.xyzThere("xyz.abc"));
+//        System.out.println(cbs.xyzThere("xyz.abc"));
+        int[] arr = {1, 2, 3};
+//        printArray(cbs.evenOdd(arr));
+//        System.out.println(cbs.isEverywhere(arr, 2));
+        System.out.println(cbs.no14(arr));
 
 
 
         System.out.println("yey");
 
+    }
+
+    public static void printArray(int[] nums) {
+        System.out.println("Printint array with length "+ nums.length);
+        for(int n: nums) {
+            System.out.println(n);
+        }
     }
 
     public static boolean nearHundred(int n) {
