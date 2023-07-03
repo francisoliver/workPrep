@@ -963,5 +963,70 @@ public class CodingBatSolution {
         }
         return (!(oneFound && fourFound));
     }
+    public int matchUp(int[] a, int[] b) {
+        int count = 0;
+
+        for(int i = 0; i < a.length; i++) {
+            int diff = Math.abs(a[i] - b[i]);
+            if(diff > 0 && diff <2) {
+                count++;
+            }
+
+        }
+
+        return count;
+    }
+
+    public boolean haveThree(int[] nums) {
+        int count = 0, len = nums.length;
+        for(int ctr = 0; ctr < len; ctr++) {
+            if(nums[ctr] == 3) {
+                count++;
+                if(ctr < len - 1) {
+                    if(nums[ctr + 1]==3) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return count == 3;
+
+    }
+
+    public boolean either24(int[] nums) {
+        boolean prev2 = false,prev2b = false, prev4=false, prev4b=false;
+        StringBuilder sb = new StringBuilder();
+        for(int n: nums) {
+            sb.append(n);
+        }
+        return sb.toString().contains("44") ^ sb.toString().contains("22");
+    }
+
+    public boolean twoTwo(int[] nums) {
+        boolean prev2 = false, shouldBeTrue = false;
+        if(nums.length == 1 && nums[0] == 2) return false;
+        for(int ctr = 1; ctr < nums.length ; ctr++) {
+
+            if(2 == nums[ctr]) {
+                if(2 == nums[ctr - 1]) {
+                    shouldBeTrue = false;
+                } else {
+                    shouldBeTrue = true;
+                }
+                prev2 = true;
+            } else { //number is not 2 but check if the previous was 2, should it be true?
+                if(prev2 && shouldBeTrue) {
+                    return false;
+                } else {
+                    shouldBeTrue = false;
+                }
+            }
+
+        }
+        return !shouldBeTrue;
+    }
+
+
 
 }
