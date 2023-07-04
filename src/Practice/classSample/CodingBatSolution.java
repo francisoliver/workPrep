@@ -7,13 +7,12 @@ public class CodingBatSolution {
     public boolean array123(int[] nums) {
         int len = nums.length;
         if(len < 3) return false;
-        boolean found = false;
         for(int n = 0; n < len - 2; n++) {
             if(1 == nums[n] && 2 == nums[n + 1] && 3 == nums[n+2]) {
-                found = true;
+                return true;
             }
         }
-        return found;
+        return false;
     }
 
     public String altPairs(String str) {
@@ -86,8 +85,7 @@ public class CodingBatSolution {
     }
 
     public String startWord(String str, String word) {
-        StringBuilder sb = new StringBuilder();
-        int match = 0, len = word.length();
+        int len = word.length();
 
         String firstWord = str.substring(0, len);
         if(firstWord.equals(word)) {
@@ -131,7 +129,6 @@ public class CodingBatSolution {
     public String withoutX(String str) {
         StringBuilder sb = new StringBuilder();
         String x = "x";
-        String output;
         if(str.endsWith(x)) {
             sb.append(str.substring(0, str.length() - 1));
         } else sb.append(str);
