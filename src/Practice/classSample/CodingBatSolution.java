@@ -1146,6 +1146,20 @@ public class CodingBatSolution {
         return nums;
     }
 
-
+    public boolean has77(int[] nums) {
+        for(int ctr = 0; ctr< nums.length - 1; ctr++) {
+            if( 7 == nums[ctr]) {
+                if(nums[ctr + 1] == 7) {
+                    return true;
+                }
+                if(ctr < nums.length - 2) {
+                    if( nums[ctr + 2] == 7) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
 }
