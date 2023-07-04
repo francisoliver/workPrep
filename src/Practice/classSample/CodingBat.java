@@ -67,11 +67,13 @@ public class CodingBat {
 //        System.out.println(cbs.sameStarChar("xy*yzz"));
 //        System.out.println(cbs.xyzThere("xyz.abc"));
 //        int[] arr = {4, 2, 2, 3};
-        int[] arr = {2, 2, 4, 2};
+        int[] arr = {2, 4, 2, 5};
+
 //        printArray(cbs.evenOdd(arr));
 //        System.out.println(cbs.isEverywhere(arr, 2));
 //        System.out.println(cbs.no14(arr));
-        System.out.println(cbs.twoTwo(arr));
+//        System.out.println(cbs.twoTwo(arr));
+        System.out.println(cbs.modThree(arr));
 
 
 

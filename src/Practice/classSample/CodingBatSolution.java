@@ -1026,6 +1026,128 @@ public class CodingBatSolution {
         }
         return !shouldBeTrue;
     }
+    public boolean modThree(int[] nums) {
+        int odd = 0, even = 0;
+        for(int n: nums) {
+            if(n % 2 == 0) {
+                even++;
+                odd= 0;
+            } else {
+                odd++;
+                even =0;
+            }
+            if(3 == odd || 3 ==even) return true;
+        }
+        return false;
+    }
+
+
+    public int bigDiff(int[] nums) {
+        Arrays.sort(nums);
+        return Math.abs(nums[0] - nums[nums.length - 1]);
+    }
+
+    public int sum67(int[] nums) {
+        boolean flag = true;
+        int sum = 0;
+        for(int n: nums) {
+            if (6 == n) {
+                flag = false;
+            }
+
+            if(flag) {
+                sum+= n;
+            }
+
+            if (7 == n) {
+                flag = true;
+            }
+        }
+        return sum;
+    }
+
+    public int[] pre4(int[] nums) {
+        int indexOf4 = 0, start = 0;
+        for(int ctr = 0; ctr < nums.length; ctr++) {
+            if(4 == nums[ctr]) {
+                indexOf4 = ctr;
+                break;
+            }
+        }
+        int[] arr = new int[indexOf4];
+        for(int ctr = 0; ctr < indexOf4; ctr++) {
+            arr[ctr] = nums[start++];
+        }
+        return arr;
+    }
+
+    public int[] notAlone(int[] nums, int val) {
+        for(int ctr = 1; ctr < nums.length - 1; ctr++) {
+            if(nums[ctr] == val) {
+                if(nums[ctr - 1] > nums[ctr + 1]) {
+                    nums[ctr] = nums[ctr - 1];
+                } else {
+                    nums[ctr] = nums[ctr + 1];
+                }
+            }
+        }
+        return nums;
+    }
+    public boolean sameEnds(int[] nums, int len) {
+        int sum = 0, end = nums.length - len;
+        for(int ctr=0; ctr<len; ctr++) {
+            if(nums[ctr] == nums[end]) {
+                sum++;
+                end++;
+            }
+        }
+        return len == sum;
+    }
+
+    public int centeredAverage(int[] nums) {
+        int n = 0, sum = 0;
+        Arrays.sort(nums);
+        for(int index = 1; index < nums.length -2; index++) {
+            sum+=nums[index];
+        }
+        return sum/nums.length -2;
+    }
+
+    public int[] zeroFront(int[] nums) {
+        int start  = 0, end = nums.length;
+        int[] arr = new int[nums.length];
+        for(int n: nums) {
+            if(0 == n) {
+                arr[start++] = n;
+            } else {
+                arr[end--] = n;
+            }
+        }
+        return arr;
+    }
+
+    public int[] zeroMax(int[] nums) {
+        int max = 0;
+
+        for(int ctr = 0; ctr < nums.length; ctr++ ) {
+            if(nums[ctr] ==0) {
+                max = 0;
+                for(int index = ctr; index < nums.length; index++){
+                    int candidate = nums[index];
+                    if(candidate % 2 == 1 ) {
+
+                        if(nums[index] > max) {
+                            max = nums[index];
+                        }
+
+                    }
+                }
+
+                nums[ctr] = max;
+            }
+        }
+        return nums;
+    }
 
 
 
