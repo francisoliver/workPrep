@@ -1080,7 +1080,7 @@ public class CodingBatSolution {
 
     public int[] notAlone(int[] nums, int val) {
         for(int ctr = 1; ctr < nums.length - 1; ctr++) {
-            if(nums[ctr] == val) {
+            if(nums[ctr] == val && nums[ctr + 1] != val && nums[ctr - 1] != val) {
                 if(nums[ctr - 1] > nums[ctr + 1]) {
                     nums[ctr] = nums[ctr - 1];
                 } else {
