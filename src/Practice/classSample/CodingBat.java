@@ -73,9 +73,22 @@ public class CodingBat {
 //        System.out.println(cbs.isEverywhere(arr, 2));
 //        System.out.println(cbs.no14(arr));
 //        System.out.println(cbs.twoTwo(arr));
-        System.out.println(cbs.modThree(arr));
+//        System.out.println(cbs.modThree(arr));
+//        System.out.println(cbs.fizzBuzz(1, 6));
+//        System.out.println(cbs.countYZ("DAY abc XYZ") );
+//        System.out.println(cbs.sameEnds2("javaXYZjava"));
+//        System.out.println(cbs.sumNumbers("aa11b33"));
+//        System.out.println(cbs.gHappy("xxgggxyg") );
+//        System.out.println(cbs.equalIsNot("This is not"));
+//        System.out.println(cbs.mirrorEnds("abXYZba"));
 
-
+        sb.setLength(0);
+//        for(int ctr=0; ctr <100; ctr++) {
+////            System.out.println("Cloud Liam M. Malit");
+//
+//            sb.append("Cloud").append(" Liam").append(" M. Malit will follow his Daddy's order so his daddy might buy him a pizza\n");
+//            System.out.println(sb.toString());
+//        }
 
         System.out.println("yey");
 

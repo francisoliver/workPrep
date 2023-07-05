@@ -1162,4 +1162,179 @@ public class CodingBatSolution {
         return false;
     }
 
+    public int[] fizzArray3(int start, int end) {
+        int range = end - start;
+        int[] arr = new int[range];
+        for( int ctr = 0; ctr < range; ctr++) {
+            arr[ctr] = start++;
+        }
+        return arr;
+    }
+
+    public int[] tenRun(int[] nums) {
+
+        boolean flag = false;
+        int temp = 0;
+        for(int ctr=0; ctr < nums.length; ctr++) {
+            if(nums[ctr] % 10 == 0) {
+                flag = true;
+                temp = nums[ctr];
+            }
+            if(flag) {
+                nums[ctr] = temp;
+            }
+        }
+        return nums;
+    }
+
+    public String[] fizzBuzz(int start, int end) {
+        boolean fizz = false, buzz = false;
+        int ctr = 0;
+        String f = "Fizz", b = "Buzz";
+
+        String[] s = new String[end - start];
+        for(; start< end; start++) {
+            StringBuilder sb = new StringBuilder();
+            if (start % 3 == 0) fizz = true;
+            if (start % 5 == 0) buzz = true;
+            if(fizz||buzz) {
+                if(fizz) sb.append(f);
+                if(buzz) sb.append(b);
+            } else {
+                sb.append(start);
+            }
+            s[ctr++] = sb.toString();
+            fizz =false; buzz = false;
+            sb.setLength(0);
+        }
+        return s;
+    }
+
+    public int countYZ(String str) {
+        int len = str.length(), count = 0;
+        str = str.toLowerCase();
+        for(int ctr =0; ctr < len; ctr++) {
+            char _c = str.charAt(ctr);
+            if(_c =='z' || _c =='y') {
+                //check next char
+                if(ctr < len - 1) {
+                    if(!Character.isLetter(str.charAt(ctr + 1))) {
+                        count++;
+                    }
+                }
+                if(ctr == len - 1) count++;
+            }
+        }
+        return count;
+    }
+
+    public int sumNumbers(String str) {
+        int start = 0, sum = 0;
+        boolean isEmpty = true;
+        for(int ctr=0 ;ctr < str.length();ctr++) {
+            char c = str.charAt(ctr);
+            if(Character.isDigit(c)) {
+                if(isEmpty) {
+                    start = ctr;
+                    isEmpty = false;
+                }
+                if(ctr == str.length() - 1 && !isEmpty) {
+                    sum += Integer.parseInt(str.substring(start, ctr + 1));
+                }
+            } else {
+                if(!isEmpty) {
+                    sum += Integer.parseInt(str.substring(start, ctr ));
+                    isEmpty = true;
+                }
+            }
+        }
+        return sum;
+    }
+    public int countTriple(String str) {
+        int sum = 0;
+        for(int ctr = 0; ctr < str.length() -2; ctr++) {
+            String s = str.substring(ctr, ctr + 1);
+            if(str.substring(ctr, ctr + 3).equals(s+s+s)) {
+                sum++;
+            }
+        }
+        return sum;
+    }
+
+    public boolean gHappy(String str) {
+        if (str.length() == 1) {
+            return str.charAt(0) != 'g';
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == 'g') {
+                boolean isHappy = (i > 0 && str.charAt(i - 1) == 'g') || (i < str.length() - 1 && str.charAt(i + 1) == 'g');
+                if (!isHappy) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+    public int sumDigits(String str) {
+        int sum = 0;
+        for(int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            boolean isDigit = Character.isDigit(c);
+            if(isDigit) {
+                sum+= Integer.parseInt(String.valueOf(c));
+            }
+        }
+        return sum;
+    }
+
+    public String withoutString(String base, String remove) {
+        return base.replaceAll("(?i)" + remove, "");
+    }
+
+    public int maxBlock(String str) {
+        int len = str.length(),tmpCount =1, max=0;
+        for(int i=1; i < len; i++){
+            if(str.charAt(i) == str.charAt(i - 1)) {
+                tmpCount++;
+            } else {
+                tmpCount = 1;
+            }
+            if(tmpCount>max) {
+                max = tmpCount;
+            }
+        }
+        return max;
+    }
+
+    public boolean equalIsNot(String str) {
+        str = " " + str + " ";
+        int isCount = str.split("is").length, notCount = str.split("not").length;
+        return isCount == notCount;
+    }
+
+    public String notReplace(String str) {
+        return str.replaceAll("\\bis\\b", "is not");
+    }
+
+    public String mirrorEnds(String string) {
+        StringBuilder stringBuilder = new StringBuilder(string);
+        String rev = stringBuilder.reverse().toString();
+        if(string.equals(rev)) return string;
+        int len = string.length(), sum = 0;
+        for(int i=0; i < len -1; i++) {
+            if(string.charAt(i) == rev.charAt(i)) {
+                sum++;
+            } else {
+                break;
+            }
+        }
+        return string.substring(0, sum );
+    }
+
+    }
+
+
+
 }
