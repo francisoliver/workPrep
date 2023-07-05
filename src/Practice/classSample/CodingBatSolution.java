@@ -1090,15 +1090,18 @@ public class CodingBatSolution {
         }
         return nums;
     }
-    public boolean sameEnds(int[] nums, int len) {
-        int sum = 0, end = nums.length - len;
-        for(int ctr=0; ctr<len; ctr++) {
-            if(nums[ctr] == nums[end]) {
-                sum++;
-                end++;
+    public String sameEnds(String string) {
+        int tmp = 0, len = string.length(), i = 1;
+        while(i < len /2  + 1) {
+            if(string.substring(0, i).equals(string.substring(len - i))){
+                tmp = i;
+                if(i > tmp) {
+                    tmp = i;
+                }
             }
+            i++;
         }
-        return len == sum;
+        return string.substring(0, tmp);
     }
 
     public int centeredAverage(int[] nums) {
