@@ -56,21 +56,67 @@ public class CodingBatArray3 {
         return false;
     }
 
-    public int maxMirror(int[] nums) {
+    public int maxMirror2(int[] nums) {
         StringBuilder sb = new StringBuilder();
         for (int n : nums) sb.append(n);
         String s = sb.toString();
         String rev = sb.reverse().toString();
+        int sum = 0;
         for(int start =0; start < s.length(); start++) {
+            int counter = 0;
             for(int end  = start; end < s.length(); end++) {
-                String subs = s.substring(start, end + 1);
-                System.out.println(subs);
+                String subs = rev.substring(start, end + 1);
+                if(s.contains(subs)) {
+                    System.out.println("this is the substring = " + subs);
+                    System.out.println("index of  = " + s.indexOf(subs));
+                    counter++;
+                    continue;
+                }
+                break;
             }
-
+            if(counter > sum) {
+                sum = counter;
+                System.out.println("new sum encountered! please see above! sum was " +sum);
+            }
+            counter = 0;
         }
-        return 1;
+        return sum;
 
     }
+
+    public int[] seriesUp(int n) {
+        int limit = n * (n + 1) / 2, counter = 0;
+        int[] arr = new int[limit];
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                arr[counter++] = j;
+            }
+        }
+        return arr;
+    }
+
+    public boolean linearIn(int[] outer, int[] inner) {
+        int counter = 0, tmp = 0;
+        boolean found = false;
+
+        for (int i = 0; i < inner.length; i++) {
+
+            while (counter < outer.length && !found) {
+                if (inner[i] == outer[counter]) {
+                    found = true;
+                    tmp++;
+                    continue;
+                }
+                counter++;
+            }
+            found = false;
+
+        }
+        return tmp == inner.length;
+
+    }
+
+
 
 
 

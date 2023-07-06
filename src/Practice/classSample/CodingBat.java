@@ -90,13 +90,14 @@ public class CodingBat {
 //        }
 
 //        int[] arr = {1, 3, 1, 4, 4, 3, 1};
-        int[] arr = {5, 3, 5, 4, 5, 4, 5, 4, 3, 5, 3, 5};
+        int[] arr = {1, 2, 1, 20, 21, 1, 2, 1, 2, 23, 24, 2, 1, 2, 1, 25};
 
         System.out.println("yey");
         CodingBatArray3 arraySolution = new CodingBatArray3();
 //        System.out.println(arraySolution.maxSpan(arr));
 //        printArray(arraySolution.fix34(arr));
-        arraySolution.maxMirror(arr);
+//        System.out.println(arraySolution.maxMirror(arr));
+        System.out.println(arraySolution.seriesUp(4));
 
     }
 
