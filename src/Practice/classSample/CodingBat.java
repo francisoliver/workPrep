@@ -95,7 +95,8 @@ public class CodingBat {
         System.out.println("yey");
         CodingBatArray3 arraySolution = new CodingBatArray3();
 //        System.out.println(arraySolution.maxSpan(arr));
-        printArray(arraySolution.fix34(arr));
+//        printArray(arraySolution.fix34(arr));
+        arraySolution.maxMirror(arr);
 
     }
 

@@ -56,5 +56,22 @@ public class CodingBatArray3 {
         return false;
     }
 
+    public int maxMirror(int[] nums) {
+        StringBuilder sb = new StringBuilder();
+        for (int n : nums) sb.append(n);
+        String s = sb.toString();
+        String rev = sb.reverse().toString();
+        for(int start =0; start < s.length(); start++) {
+            for(int end  = start; end < s.length(); end++) {
+                String subs = s.substring(start, end + 1);
+                System.out.println(subs);
+            }
+
+        }
+        return 1;
+
+    }
+
+
 
 }
