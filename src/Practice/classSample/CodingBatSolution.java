@@ -1336,8 +1336,4 @@ public class CodingBatSolution {
         return string.substring(0, sum );
     }
 
-    }
-
-
-
 }
