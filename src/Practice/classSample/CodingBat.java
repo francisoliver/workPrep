@@ -90,20 +90,24 @@ public class CodingBat {
 //        }
 
 //        int[] arr = {1, 3, 1, 4, 4, 3, 1};
-        int[] arr = {1, 2, 1, 20, 21, 1, 2, 1, 2, 23, 24, 2, 1, 2, 1, 25};
+        int[] arr = {1 ,1 , 1, 1};
 
         System.out.println("yey");
         CodingBatArray3 arraySolution = new CodingBatArray3();
 //        System.out.println(arraySolution.maxSpan(arr));
 //        printArray(arraySolution.fix34(arr));
 //        System.out.println(arraySolution.maxMirror(arr));
-        System.out.println(arraySolution.seriesUp(4));
+//        System.out.println(arraySolution.seriesUp(4));
+//        System.out.println(arraySolution.countClumps(arr));
+        String[] s = {"a", "b", "c", "a"};
+        printArray(arraySolution.wordsWithout(s, "b"));
+        System.out.println(arraySolution.hasOne(10));
 
     }
 
-    public static void printArray(int[] nums) {
+    public static void printArray(Object[] nums) {
         System.out.println("Printint array with length "+ nums.length);
-        for(int n: nums) {
+        for(Object n: nums) {
             System.out.print(n + ", ");
         }
     }

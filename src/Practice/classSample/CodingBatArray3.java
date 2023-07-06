@@ -1,7 +1,6 @@
 package Practice.classSample;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class CodingBatArray3 {
     public int maxSpan(int[] nums) {
@@ -116,6 +115,100 @@ public class CodingBatArray3 {
 
     }
 
+    public int countClumps(int[] nums) {
+        int clumps = 0;
+        boolean isPrevClump = false;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1]) {
+                if (!isPrevClump) {
+                    clumps++;
+                    isPrevClump = true;
+                }
+            } else {
+                isPrevClump = false;
+            }
+        }
+
+        return clumps;
+    }
+
+    public int[] fix45(int[] nums) {
+        int index3 = 0;
+        int index4 = 0;
+
+        while (index3 < nums.length && nums[index3] != 4) {
+            index3++;
+        }
+
+        while (index4 < nums.length && (nums[index4] != 5 || (index4 > 0 && nums[index4 - 1] == 4))) {
+            index4++;
+        }
+
+        while (index3 < nums.length && index4 < nums.length) {
+            if (nums[index3] == 4) {
+                int temp = nums[index3 + 1];
+                nums[index3 + 1] = nums[index4];
+                nums[index4] = temp;
+
+                while (index4 < nums.length && (nums[index4] != 5 || (index4 > 0 && nums[index4 - 1] == 4))) {
+                    index4++;
+                }
+            }
+            index3++;
+        }
+
+        return nums;
+    }
+
+    public String[] wordsWithout(String[] words, String target) {
+        int count = 0;
+        for (String word : words) {
+            if (!word.equals(target)) {
+                count++;
+            }
+        }
+
+        String[] result = new String[count];
+        int index = 0;
+        for (String word : words) {
+            if (!word.equals(target)) {
+                result[index++] = word;
+                if (index == count) {
+                    break; // Break the loop if all non-target words are added to the result
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public String[] wordsFront(String[] words, int n) {
+        String[] result = new String[n];
+        for(int i = 0; i < n; i++) {
+            result[i] = words[i];
+        }
+        return result;
+    }
+
+    public boolean hasOne(int n) {
+        while (n > 9) {
+            int tens = n / 10, ones = n % 10;
+            if (tens == 10 || ones == 1) return true;
+            n = tens;
+        }
+        return n == 1;
+    }
+
+    public List wordsWithoutList(String[] words, int len) {
+        List<String> list = new ArrayList<>();
+        for (String word : words) {
+            if (word.length() != len) {
+                list.add(word);
+            }
+        }
+        return list;
+    }
 
 
 
