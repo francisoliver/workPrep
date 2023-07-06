@@ -67,7 +67,6 @@ public class CodingBat {
 //        System.out.println(cbs.sameStarChar("xy*yzz"));
 //        System.out.println(cbs.xyzThere("xyz.abc"));
 //        int[] arr = {4, 2, 2, 3};
-        int[] arr = {2, 4, 2, 5};
 
 //        printArray(cbs.evenOdd(arr));
 //        System.out.println(cbs.isEverywhere(arr, 2));
@@ -90,14 +89,20 @@ public class CodingBat {
 //            System.out.println(sb.toString());
 //        }
 
+//        int[] arr = {1, 3, 1, 4, 4, 3, 1};
+        int[] arr = {5, 3, 5, 4, 5, 4, 5, 4, 3, 5, 3, 5};
+
         System.out.println("yey");
+        CodingBatArray3 arraySolution = new CodingBatArray3();
+//        System.out.println(arraySolution.maxSpan(arr));
+        printArray(arraySolution.fix34(arr));
 
     }
 
     public static void printArray(int[] nums) {
         System.out.println("Printint array with length "+ nums.length);
         for(int n: nums) {
-            System.out.println(n);
+            System.out.print(n + ", ");
         }
     }
 
