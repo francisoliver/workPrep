@@ -90,7 +90,7 @@ public class CodingBat {
 //        }
 
 //        int[] arr = {1, 3, 1, 4, 4, 3, 1};
-        int[] arr = {1 ,1 , 1, 1};
+        int[] arr = {5, 3, 6, 7, 2};
 
         System.out.println("yey");
         CodingBatArray3 arraySolution = new CodingBatArray3();
@@ -99,9 +99,12 @@ public class CodingBat {
 //        System.out.println(arraySolution.maxMirror(arr));
 //        System.out.println(arraySolution.seriesUp(4));
 //        System.out.println(arraySolution.countClumps(arr));
-        String[] s = {"a", "b", "c", "a"};
-        printArray(arraySolution.wordsWithout(s, "b"));
-        System.out.println(arraySolution.hasOne(10));
+//        String[] s = {"a", "b", "c", "a"};
+//        printArray(arraySolution.wordsWithout(s, "b"));
+//        System.out.println(arraySolution.hasOne(10));
+//        System.out.println(arraySolution.dividesSelf(128));
+        System.out.println(arraySolution.sumHeights(arr, 2, 4));
+
 
     }
 

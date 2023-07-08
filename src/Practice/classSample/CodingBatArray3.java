@@ -210,6 +210,88 @@ public class CodingBatArray3 {
         return list;
     }
 
+    public int scoreUp(String[] key, String[] answers) {
+        int score = 0;
+        for(int i =0; i< key.length; i++) {
+            if(key[i] ==answers[i]) {
+                score+=4;
+            } else if (answers[i] =="?") {
+                continue;
+            } else if (key[i] !=answers[i]) {
+                score-=1;
+            }
+        }
+        return score;
+    }
+
+    public int wordsCount(String[] words, int len) {
+        int count = 0;
+        for(String word: words) {
+            if(word.length() == len) count++;
+        }
+        return count;
+    }
+
+    public boolean dividesSelf(int n) {
+
+        while (n > 9) {
+            int tens = n / 10, ones = n % 10;
+            if (tens == 10 || ones == 0) return false;
+            n = tens;
+        }
+        return n != 0 ;
+    }
+
+    public int[] copyEvens(int[] nums, int count) {
+        int[] arr = new int[count];
+        int index = 0;
+
+        for (int i = 0; i < count; i++) {
+            while (index < nums.length) {
+                if (nums[index] % 2 == 0) {
+                    arr[i] = nums[index];
+                    break;
+                }
+                index++;
+            }
+            index++;
+        }
+
+        return arr;
+    }
+
+    public int sumHeights(int[] heights, int start, int end) {
+        int diff = 0, prev = heights[start];
+        for(int i = start; i <= end; i++) {
+            diff += Math.abs((heights[i] - prev));
+            prev = heights[i];
+        }
+        return diff;
+    }
+
+    public String[] mergeTwo(String[] a, String[] b, int n) {
+        String[] result = new String[n];
+        int i = 0, j = 0;
+
+        for (int index = 0; index < n; index++) {
+            if (index > 0) {
+                if (i < a.length && a[i].equals(result[index - 1])) {
+                    i++;
+                }
+                if (j < b.length && b[j].equals(result[index - 1])) {
+                    j++;
+                }
+            }
+            if (i < a.length && (j >= b.length || a[i].compareTo(b[j]) <= 0)) {
+                result[index] = a[i++];
+            } else {
+                result[index] = b[j++];
+            }
+        }
+
+        return result;
+    }
+
 
 
 
