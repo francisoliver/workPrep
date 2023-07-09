@@ -103,9 +103,9 @@ public class CodingBat {
 //        printArray(arraySolution.wordsWithout(s, "b"));
 //        System.out.println(arraySolution.hasOne(10));
 //        System.out.println(arraySolution.dividesSelf(128));
-        System.out.println(arraySolution.sumHeights(arr, 2, 4));
+//        System.out.println(arraySolution.sumHeights(arr, 2, 4));
 
-
+        System.out.println(arraySolution.userCompare("bb", 1, "bb", 1) );
     }
 
     public static void printArray(Object[] nums) {

@@ -292,6 +292,55 @@ public class CodingBatArray3 {
         return result;
     }
 
+    public int sumHeights2(int[] heights, int start, int end) {
+        int diff = 0, prev = heights[start], multiplier;
+        for(int i = start; i <= end; i++) {
+            int step = heights[i];
+            if(step > prev) {
+                multiplier = 2;
+            } else {
+                multiplier = 1;
+            }
+            diff += Math.abs((step - prev)) * multiplier;
+            prev = heights[i];
+        }
+        return diff;
+    }
+
+    public int userCompare(String aName, int aId, String bName, int bId) {
+        int nameComparison = aName.compareTo(bName);
+
+        if (nameComparison != 0) {
+            return Integer.compare(nameComparison, 0);
+        } else {
+            return Integer.compare(aId, bId);
+        }
+    }
+
+    public boolean scores100(int[] scores) {
+        for(int i=0; i< scores.length - 1; i++) {
+            if(scores[i] == 100 && scores[i+ 1] ==100) return true;
+        }
+        return false;
+    }
+
+    public int commonTwo(String[] a, String[] b) {
+        HashSet<String> setA = new HashSet<>(Arrays.asList(a));
+        HashSet<String> setB = new HashSet<>(Arrays.asList(b));
+
+        setA.retainAll(setB);
+        return setA.size();
+    }
+    public int bigHeights(int[] heights, int start, int end) {
+
+        int diff = 0, prev = heights[start], count;
+        for(int i = start; i <= end; i++) {
+            diff = Math.abs((heights[i] - prev));
+            if(diff>4) count++;
+            prev = heights[i];
+        }
+        return count;
+    }
 
 
 
