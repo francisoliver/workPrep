@@ -333,7 +333,7 @@ public class CodingBatArray3 {
     }
     public int bigHeights(int[] heights, int start, int end) {
 
-        int diff = 0, prev = heights[start], count;
+        int diff = 0, prev = heights[start], count = 0;
         for(int i = start; i <= end; i++) {
             diff = Math.abs((heights[i] - prev));
             if(diff>4) count++;
