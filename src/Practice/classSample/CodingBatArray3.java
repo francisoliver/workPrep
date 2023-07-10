@@ -1,6 +1,7 @@
 package Practice.classSample;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CodingBatArray3 {
     public int maxSpan(int[] nums) {
@@ -234,12 +235,13 @@ public class CodingBatArray3 {
 
     public boolean dividesSelf(int n) {
 
-        while (n > 9) {
-            int tens = n / 10, ones = n % 10;
-            if (tens == 10 || ones == 0) return false;
-            n = tens;
+        for(int val = n; val != 0; val /= 10) {
+            int digit = val % 10;
+            if(digit == 0 || n % digit != 0)
+                return false;
         }
-        return n != 0 ;
+
+        return true;
     }
 
     public int[] copyEvens(int[] nums, int count) {
@@ -343,5 +345,120 @@ public class CodingBatArray3 {
     }
 
 
+    public boolean scoresClump(int[] scores) {
+        for(int i =0; i < scores.length - 2; i++) {
+            if(Math.abs(scores[i] - scores[i+ 2] ) <= 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public int[] copyEndy(int[] nums, int count) {
+
+        int[] result = new int[count];
+        int index = 0;
+
+        for (int n :nums) {
+            if (isEndy(n)) {
+                if(index == count) {
+                    break;
+                }
+                result[index++] = n;
+            }
+        }
+        return result;
+
+    }
+    boolean isEndy(int n) {
+        return n >= 0 && n <= 10 || n >= 90 && n <= 100;
+    }
+
+    public int scoresSpecial(int[] a, int[] b) {
+        return maxIntInArray(a)+ maxIntInArray(b);
+    }
+
+    int maxIntInArray(int[] nums ) {
+        int max = 0;
+        for(int n: nums) {
+            if(n % 10 == 0) {
+                if(n > max) {
+                    max = n;
+                }
+            }
+        }
+        return max;
+    }
+
+    public int factorial(int n) {
+        return n * (n - 1);
+    }
+
+    public int countHi(String str) {
+
+        if (str.length() < 2){
+            return 0;
+        }
+
+        if (str.substring(0,2).equals("hi")){
+            return 1 + countHi(str.substring(1));
+        }
+
+        else {
+            return countHi(str.substring(1));
+        }
+
+    }
+
+    public String changeXY(String str) {
+        if (str.equals("")) {
+            return str;
+        }
+        if (str.charAt(0) == 'x'){
+            return "y" + changeXY(str.substring(1));
+        }
+        return str.charAt(0) + changeXY(str.substring(1));
+    }
+
+    public List<String> copies3(List<String> strings) {
+        return strings.stream().map(s ->s + s +s).collect(Collectors.toList());   // .replaceAll(s -> s + s + s);
+    }
+    public List<Integer> square(List<Integer> nums) {
+        return nums.stream().map(integer -> integer * integer).collect(Collectors.toList());
+    }
+
+    public List<String> noX(List<String> strings) {
+        return strings.stream().map(s-> s.replace("x", "")).collect(Collectors.toList());
+    }
+
+    public List<Integer> math1(List<Integer> nums) {
+        return nums.stream().map(i -> (i + 1) * 10).collect(Collectors.toList());
+    }
+
+    public List<String> moreY(List<String> strings) {
+        return strings.stream().map(s-> "y" + s + "y").collect(Collectors.toList());
+    }
+
+    public List<Integer> noNeg(List<Integer> nums) {
+        return nums.stream().filter(i -> i >= 0).collect(Collectors.toList());
+    }
+
+    public List<Integer> square56(List<Integer> nums) {
+        return nums.stream().map(i-> (i * i) + 10 ).filter(i-> i % 10!= 6 && i % 10!= 5).collect(Collectors.toList());
+    }
+
+    public List<Integer> noTeen(List<Integer> nums) {
+        return nums.stream().filter(i-> i < 13 || i > 19 ).collect(Collectors.toList());
+    }
+
+    public List<String> noZ(List<String> strings) {
+        return strings.stream().filter(s-> !s.contains("z")).collect(Collectors.toList());
+    }
+
+    public List<String> noYY(List<String> strings) {
+        return strings.stream().
+                map(s->s+"y").
+                filter(s-> !s.contains("yy")).
+                collect(Collectors.toList());
+    }
 
 }
