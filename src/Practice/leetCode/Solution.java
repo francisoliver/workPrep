@@ -5,11 +5,13 @@ import java.util.*;
 public class Solution {
 
     public static void main(String[] args) {
-        int[] arr = {1,2,3,4};
+//        int[] arr = {11,13,15,17};
+        int[] arr = {2 , 1};
 //        printElements(twoSum(arr, 9));
 
 //        containsDuplicate(arr);
-        productExceptSelf(arr);
+//        productExceptSelf(arr);
+        System.out.println(findMin(arr));
 
     }
     public static int[] twoSum(int[] nums, int target) {
@@ -69,7 +71,6 @@ public class Solution {
 
     public static int[] productExceptSelf(int[] nums) {
         int len = nums.length;
-//        int[] solution = new int[len];
         int[] left = new int[len];
         int[] right = new int[len];
         right[0] = 1;
@@ -89,6 +90,50 @@ public class Solution {
         }
 
         return left;
+    }
+
+    //kadane
+    public int maxSubArray(int[] nums) {
+        int maxSum = nums[0], currentSum = maxSum;
+        for(int i = 1; i < nums.length; i++) {
+            currentSum = Math.max(nums[i] + currentSum, nums[i]);
+            maxSum = Math.max(currentSum, maxSum);
+        }
+        return maxSum;
+
+    }
+
+    public int maxProduct(int[] nums) {
+        if(nums.length < 2) return nums[0];
+        int max = nums[0];
+        int min = max;
+        int result = max;
+        for(int i = 1; i < nums.length; i++) {
+
+            int temp = Math.max(nums[i] * max , Math.max(nums[i] * min, nums[i]));
+            min = Math.min(nums[i] * max , Math.min(nums[i] * min, nums[i]));
+
+            max = temp;
+            result = Math.max(result, max);
+
+        }
+        return result;
+    }
+
+    public static int findMin(int[] nums) {
+
+        int pivot = nums[0];
+//11,13,15,17
+        for(int i = 1; i < nums.length; i++) {
+            if(i + 1 == nums.length) return nums[0];
+            if(nums[i] < pivot) {
+                return nums[i];
+            }
+            pivot = nums[i];
+        }
+
+        return pivot;
+
     }
 
 
