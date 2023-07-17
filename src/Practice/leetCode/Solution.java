@@ -6,11 +6,13 @@ public class Solution {
 
     public static void main(String[] args) {
 //        int[] arr = {11,13,15,17};
-        int[] arr = {2 , 1};
+        int[] arr = {3 , 1, 2};
 //        printElements(twoSum(arr, 9));
 
 //        containsDuplicate(arr);
 //        productExceptSelf(arr);
+
+        System.out.println(getSum(4, 5));
         System.out.println(findMin(arr));
 
     }
@@ -122,17 +124,59 @@ public class Solution {
 
     public static int findMin(int[] nums) {
 
-        int pivot = nums[0];
-//11,13,15,17
-        for(int i = 1; i < nums.length; i++) {
-            if(i + 1 == nums.length) return nums[0];
-            if(nums[i] < pivot) {
-                return nums[i];
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+
+            int mid = left + (right - left) / 2;
+
+            if (mid > 0 && nums[mid] < nums[mid - 1]) {
+                return nums[mid];
+            } else if ((nums[left] < nums[mid]) && (nums[mid] > nums[right])) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
             }
-            pivot = nums[i];
+
         }
 
-        return pivot;
+        return nums[left];
+
+    }
+
+    public int maxArea(int[] height) {
+
+        int maxArea  = 0, start = 0, end = height.length - 1;
+
+        while(start < end) {
+            int depth = end - start;
+            if(height[start] < height[end]) {
+                maxArea = Math.max(maxArea , depth * height[start]);
+                start++;
+            } else {
+                maxArea = Math.max(maxArea, depth * height[end]);
+                end--;
+            }
+
+        }
+
+        return maxArea;
+
+    }
+
+    public static int getSum(int a, int b) {
+
+        String binaryA = Integer.toBinaryString(a);
+        String binaryB = Integer.toBinaryString(b);
+        int len = binaryA.length() > binaryB.length() ? binaryB.length(): binaryA.length();
+        int index = 0;
+//        while (len > 0) {
+//            //binaryB.charAt(index) ^ binaryA.charAt(index);
+//
+//            index++;
+//
+//        }
+
+        return 0;
 
     }
 
