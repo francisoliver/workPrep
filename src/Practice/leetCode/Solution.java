@@ -165,18 +165,13 @@ public class Solution {
 
     public static int getSum(int a, int b) {
 
-        String binaryA = Integer.toBinaryString(a);
-        String binaryB = Integer.toBinaryString(b);
-        int len = binaryA.length() > binaryB.length() ? binaryB.length(): binaryA.length();
-        int index = 0;
-//        while (len > 0) {
-//            //binaryB.charAt(index) ^ binaryA.charAt(index);
-//
-//            index++;
-//
-//        }
-
-        return 0;
+        //review
+        while (b!=0) {
+            int tmp = (a & b) << 1;
+            a = a ^ b;
+            b = (a & b) << 1;
+        }
+        return a;
 
     }
 
