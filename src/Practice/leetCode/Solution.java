@@ -20,7 +20,8 @@ public class Solution {
 //        System.out.println(isAnagram("anagram", "nagaram"));
         String[] strings = {"eat","tea","tan","ate","nat","bat"};
 
-        System.out.println(groupAnagrams(strings));
+//        System.out.println(groupAnagrams(strings));
+        System.out.println(isValid("(]"));
     }
     public static int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -355,6 +356,25 @@ public class Solution {
         }
 
         return -1;
+    }
+
+    public static boolean isValid(String s) {
+        if(s.length() % 2 == 1) return false;
+        Map<Character, Character> parenthesis = new HashMap<>();
+        parenthesis.put(')', '(');
+        parenthesis.put(']', '[');
+        parenthesis.put('}', '{');
+        Stack<Character> stack = new Stack<>();
+        for(char c : s.toCharArray()) {
+            if(parenthesis.containsKey(c)) {
+                if(parenthesis.get(c) == stack.peek() && !stack.empty()) {
+                    stack.pop();
+                } else return false;
+            } else {
+                stack.push(c);
+            }
+        }
+        return stack.empty();
     }
 
 }
