@@ -12,9 +12,15 @@ public class Solution {
 //        containsDuplicate(arr);
 //        productExceptSelf(arr);
 
-        System.out.println(getSum(4, 5));
-        System.out.println(findMin(arr));
+//        System.out.println(getSum(4, 5));
+//        System.out.println(findMin(arr));
+//        System.out.println(lengthOfLongestSubstring("dvdf"));
+//        System.out.println(characterReplacement("AABABBA", 1));
+//        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
+//        System.out.println(isAnagram("anagram", "nagaram"));
+        String[] strings = {"eat","tea","tan","ate","nat","bat"};
 
+        System.out.println(groupAnagrams(strings));
     }
     public static int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -175,5 +181,180 @@ public class Solution {
 
     }
 
+    public static int hammingWeight(int n) {
+        int countOne = 0;
+        String s = String.valueOf(n);
+
+        for(int i=0; i<s.length(); i ++){
+            if(s.charAt(i) =='1') countOne++;
+        }
+        return countOne;
+    }
+    public static int hammingWeightYoutube(int n) {
+        int countOne = 0;
+        while (n!=0) {
+            n = n&(n-1);
+            countOne++;
+        }
+        return countOne;
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        Set<Character> set = new HashSet<>();
+        int aPointer = 0, bPointer = 0, count = 0;
+        while(bPointer < s.length()) {
+
+            char c = s.charAt(bPointer);
+            if(!set.contains(c)) {
+                set.add(c);
+                bPointer++;
+                count = Math.max(set.size(), count);
+            } else {
+                set.remove(s.charAt(aPointer));
+                aPointer++;
+            }
+
+        }
+        return count;
+    }
+
+    public static int characterReplacement(String s, int k) {
+
+        int aPointer = 0, bPointer = 0;
+        char[] arr = s.toCharArray();
+        int maxLen = 0, mostFrequent = 0;
+        HashMap<Character, Integer> map = new HashMap<>(); //map ABA
+        
+        while( bPointer < s.length() ) {
+
+            map.put(arr[bPointer], map.getOrDefault(arr[bPointer], 0) + 1);
+            mostFrequent = Math.max(mostFrequent, map.get(arr[bPointer]));
+
+            //Shrink the window if we need to replace more than k char
+            if((bPointer - aPointer + 1) - mostFrequent > k){
+                map.put(arr[aPointer], map.get(arr[aPointer]) - 1);
+                aPointer++;
+            }
+            maxLen = Math.max(maxLen, bPointer - aPointer + 1);
+            bPointer++;
+
+        }
+
+        return maxLen;
+
+    }
+
+//    public static int characterReplacement2(String s, int k) {
+//        int aPointer = 0, maxCount = 0;
+//
+//        HashMap<Character, Integer> map = new HashMap<>(); //map ABA
+//        for(int bpointer = 0; bpointer < s.length(); bpointer++) {
+//            while (bpointer - aPointer - maxCount + 1> k) {
+//
+//            }
+//        }
+//
+//        return 0;
+//
+//    }
+
+
+    public static String minWindow(String s, String t) {
+        int start = 0, end = 0;
+        Map<String, Integer> map = new HashMap<>();
+        for(int i =0; i < t.length(); i++) {
+            String subs = t.substring(i, i + 1);
+            if(s.contains(subs)) {
+                if(map.containsKey(s)) {
+
+                    int prevLocation = map.get(subs);
+
+                    if(s.substring(prevLocation + 1).contains(s)) {
+                        map.put(subs, i);
+                        int index = s.substring(prevLocation + 1).indexOf(subs);
+                        start = Math.min(start, index);
+                        end = Math.max(end, index);
+
+                    } else {
+                        return "";
+                    }
+
+                } else {
+                    map.put(subs, i);
+                    int index = s.indexOf(subs);
+                    start = Math.min(start, index);
+                    end = Math.max(end, index);
+                }
+            } else {
+                return "";
+            }
+        }
+
+        return s.substring(start, end + 1);
+    }
+    public static boolean isAnagram(String s, String t) {
+        char[] _s = s.toCharArray();
+        char[] _t = t.toCharArray();
+        int count = 0;
+        Arrays.sort(_s);
+        Arrays.sort(_t);
+
+        for(int i =0; i < s.length(); i++) {
+            if(_s[i] == _t[i]) {
+                count++;
+            } else return false;
+        }
+        return _s.length == count;
+
+    }
+
+    public static List<List<String>> groupAnagrams(String[] strs) {
+
+        Map<String, List<String>> map = new HashMap<>();
+
+        for(String s : strs) {
+            String key = getFrequncyString(s);
+            List<String> stringList;
+            if(map.containsKey(key)) {
+                stringList = map.getOrDefault(key, new ArrayList<String>());
+            } else {
+                stringList = new ArrayList<String>();
+            }
+            stringList.add(s);
+            map.put(key, stringList);
+
+        }
+        return map.values().stream().toList();
+
+    }
+
+    public static String getFrequncyString(String string) {
+        char[] arr = string.toCharArray();
+        Arrays.sort(arr);
+        String output = "";
+        for(char c: arr) {
+            output += c;
+        }
+        return output;
+    }
+
+    public int binarySearch(int[] array, int num) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while(left<=right) {
+
+            int mid = left - (right - left) / 2;
+            if(array[mid]==num) {
+                return mid;
+            } else if (array[mid] < num) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return -1;
+    }
 
 }
