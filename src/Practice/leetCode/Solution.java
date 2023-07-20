@@ -1,27 +1,22 @@
 package Practice.leetCode;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Solution {
 
     public static void main(String[] args) {
 //        int[] arr = {11,13,15,17};
-        int[] arr = {3 , 1, 2};
 //        printElements(twoSum(arr, 9));
 
 //        containsDuplicate(arr);
 //        productExceptSelf(arr);
 
-//        System.out.println(getSum(4, 5));
-//        System.out.println(findMin(arr));
-//        System.out.println(lengthOfLongestSubstring("dvdf"));
-//        System.out.println(characterReplacement("AABABBA", 1));
-//        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
-//        System.out.println(isAnagram("anagram", "nagaram"));
         String[] strings = {"eat","tea","tan","ate","nat","bat"};
 
-//        System.out.println(groupAnagrams(strings));
-        System.out.println(isValid("(]"));
+
+        int[] arr = {0,0,1,0,1};
+        System.out.println(canPlaceFlowers(arr , 1));
     }
     public static int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -375,6 +370,175 @@ public class Solution {
             }
         }
         return stack.empty();
+    }
+
+    public static boolean isPalindrome(String s) {
+
+        String normalized = "";
+        for(char c : s.toLowerCase().toCharArray()) {
+            if(Character.isDigit(c) || Character.isLetter(c)) {
+                normalized += c;
+            }
+        };
+
+        int aPointer = 0, bPointer= normalized.length() - 1;
+
+        while(aPointer<=bPointer) {
+            if(normalized.charAt(aPointer++) != normalized.charAt(bPointer--)) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+    public static String longestPalindrome(String s) {
+
+        int len = s.length() , aPointer = 0,  bPointer = len;
+        int maxLength = 1, start = 0;
+
+
+
+        for(int i = 0; i < len; i++) {
+//            if(i % 2 ==0 && i != len) {
+//                aPointer = i;
+//            } else {
+//                aPointer = i - 1;
+//            }
+//            bPointer = i + 1;
+            aPointer = i - 1;
+            bPointer = i + 1;
+            while(aPointer >= 0 && bPointer < len & s.charAt(aPointer) ==s.charAt(bPointer)) {
+                if (bPointer - aPointer + 1 > maxLength) {
+                    start = aPointer;
+                    maxLength = bPointer - aPointer + 1;
+                }
+                aPointer--;
+                bPointer++;
+               /* String palindrome = "";
+                if(aPointer>0) {
+                    palindrome = s.substring(aPointer, bPointer + 1);
+                } else {
+                    palindrome = s.substring(aPointer, bPointer + 1);
+                }
+                System.out.println(palindrome);
+                if(isPalindrome(palindrome)) {
+                    if(palindrome.length() > longestPalindrome.length()) {
+                        longestPalindrome = palindrome;
+                    }
+                }
+
+                aPointer--;
+                bPointer++;*/
+            }
+
+        }
+
+        return s.substring(start, start + maxLength);
+
+    }
+
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        for(int i = m; i < m+ n; i ++) {
+            nums1[i] = nums2[i - m];
+        }
+    }
+
+    public int removeDuplicates(int[] nums) {
+
+        Set<Integer> sets = new HashSet<>();
+        for (int n: nums) {
+            sets.add(n);
+        }
+
+        return sets.size();
+
+    }
+
+    public int lengthOfLastWord(String s) {
+        String[] split = s.split(" ");
+        return split[split.length - 1].length();
+    }
+
+    public int largestAltitude(int[] gain) {
+        return Arrays.stream(gain).max().getAsInt();
+    }
+
+    public int removeElement(int[] nums, int val) {
+        int size = 0;
+        for(int n: nums) {
+            if(n!=val) {
+                nums[size++] = n;
+            }
+        }
+        return size;
+    }
+
+    public static int majorityElement(int[] nums) {
+        if(nums.length == 1 ) return nums[0];
+        Map<Integer, Integer> map = new HashMap<>();
+        int maxFreq = 0, num= 0;
+        int k = nums.length / 2;
+        for(int n = 0; n < k; n++) {
+            int i = nums[n];
+            map.put(i, map.getOrDefault(i, 0) + 1);
+
+            int count = map.get(i);
+            if(count > maxFreq) {
+                maxFreq = count;
+                num = i;
+            }
+
+        }
+
+        return num;
+
+    }
+
+    public static boolean buddyStrings(String s, String goal) {
+
+      if(s.length()!=goal.length()) return false;
+      int count = 0;
+      for (int i =0; i< s.length(); i++) {
+          if(s.charAt(i) == goal.charAt(i)) {
+              count++;
+          }
+      }
+      return count - 2 == s.length();
+
+    }
+
+    public static boolean canPlaceFlowers(int[] f, int n) {
+
+        if (n == 0) return true;
+
+        if (f.length == 1) {
+            return f[0] == 0;
+        }
+        int len = f.length;
+        for (int i = 0; i < len; i++) {
+
+            if (1 == f[i]) continue;
+
+            if (i == len - 1 && f[i - 1] == 0) {
+                f[i] = 1;
+                n--;
+            } else if (i != 0 && i != len - 1 && f[i + 1] == 0 && f[i - 1] == 0) {
+                f[i] = 1;
+                n--;
+            } else if (i == 0 && f[i + 1] == 0) {
+                f[i] = 1;
+                n--;
+            }
+
+            if (0 == n) {
+                return true;
+            }
+
+        }
+        return n == 0;
+
     }
 
 }
