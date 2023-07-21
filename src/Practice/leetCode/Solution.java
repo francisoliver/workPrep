@@ -15,8 +15,10 @@ public class Solution {
         String[] strings = {"eat","tea","tan","ate","nat","bat"};
 
 
-        int[] arr = {0,0,1,0,1};
-        System.out.println(canPlaceFlowers(arr , 1));
+//        int[] arr = {6,14,15,26,31,36,38,41,42,45};
+        int[] arr = {4,5,6,7,8,9};
+
+        System.out.println(arithmeticTriplets(arr , 2));
     }
     public static int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -340,7 +342,7 @@ public class Solution {
 
         while(left<=right) {
 
-            int mid = left - (right - left) / 2;
+            int mid = left + (right - left) / 2;
             if(array[mid]==num) {
                 return mid;
             } else if (array[mid] < num) {
@@ -538,6 +540,90 @@ public class Solution {
 
         }
         return n == 0;
+
+    }
+
+
+    public void moveZeroes(int[] nums) {
+
+        int left = 0, right = 1;
+        while (right < nums.length) {
+            if(nums[left]!= 0) {
+                left++;
+                right++;
+            } else if (nums[right] ==0) {
+                right++;
+            } else {
+                int temp = nums[right];
+                nums[right] = nums[left];
+                nums[left] = temp;
+            }
+        }
+    }
+
+    public static int arithmeticTriplets(int[] nums, int diff) {
+        int len = nums.length;
+
+        int count = 0;
+        Set<Integer> set = new HashSet<>();
+        for(int i = 0; i < len; i++) {
+            set.add(nums[i]);
+
+            if(set.contains(nums[i] - diff )&& set.contains(nums[i] - (2 * diff))) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public String reversePrefix(String word, char ch) {
+
+        String s = "";
+        s += ch + "";
+        int index = word.indexOf(s);
+        if (index < 0) return  word;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(word.substring(0, index + 1));
+        stringBuilder.reverse();
+        stringBuilder.append(word.substring(index));
+        return stringBuilder.toString();
+
+    }
+
+    public String reverseWords(String s) {
+        String[] str = s.split(" ");
+
+        String output = "";
+
+        for(String word: str) {
+
+            StringBuilder sb = new StringBuilder(word);
+            if(output.length() > 0) {
+                output+= " ";
+            }
+            output+= sb.reverse().toString();
+
+        }
+
+        return output;
+
+    }
+
+    public String truncateSentence(String s, int k) {
+        String[] str = s.split(" ");
+        String output = "";
+        int index = 0;
+        while(k > 0) {
+            k--;
+            if(output.length()>0) {
+                output += " ";
+            }
+            output += str[index++];
+
+        }
+
+        return output;
 
     }
 
