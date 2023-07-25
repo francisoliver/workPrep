@@ -17,12 +17,15 @@ public class Solution {
 
 
 //        int[] arr = {6,14,15,26,31,36,38,41,42,45};
-        int[] arr = {9};
+//        int[] arr = {1,1,1,2,2,3};
+        int[] arr = {1,2,0,1};
 //        int[] arr = {4,5,6,7,8,9};
 
-        System.out.println(arithmeticTriplets(arr , 2));
-         shortestToChar("loveleetcode" , 'e');
-         System.out.println(plusOne(arr));
+//        System.out.println(arithmeticTriplets(arr , 2));
+//         shortestToChar("loveleetcode" , 'e');
+//         System.out.println(plusOne(arr));
+//         System.out.println(topKFrequent(arr , 2));
+        System.out.println(longestConsecutiveSorted(arr));
     }
     public static int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -633,7 +636,7 @@ public class Solution {
 
     public static int[] shortestToChar(String s, char c) {
 
-+        int position = s.indexOf(c), len = s.length();
+        int position = s.indexOf(c), len = s.length();
         int[] answer = new int[len];
         int lastPosition = 0;
 
@@ -678,6 +681,81 @@ public class Solution {
             result[index++] = Integer.parseInt(String.valueOf(v));
         }
         return result;
+
+    }
+
+    public static int[] topKFrequent(int[] nums, int k) {
+        int[] arr = new int[k];
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+
+        for(int i = 0; i < nums.length; i++) {
+
+            int n = nums[i];
+            hashMap.put(n, hashMap.getOrDefault(n, 0) + 1);
+
+        }
+
+        PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>(
+                (a, b) -> b.getValue() - a.getValue()
+        );
+
+        pq.addAll(hashMap.entrySet());
+
+        for(int i =0; i < k; i++) {
+            arr[i] = pq.poll().getKey();
+        }
+
+        return arr;
+    }
+
+    public int longestConsecutive(int[] nums) {
+
+        if (nums.length == 0) return 0;
+        HashSet<Integer> set = new HashSet<>();
+        int ans = 1;
+        for (int num : nums) {
+            set.add(num);
+        }
+        for (int num : nums) {
+            if (!set.contains(num - 1)) {
+                int count = 1;
+                while (set.contains(num + 1)) {
+                    num++;
+                    count++;
+                }
+                ans = Math.max(count, ans);
+            }
+        }
+        return ans;
+
+    }
+
+    public static int longestConsecutiveSorted(int[] nums) {
+
+        int count = 0;
+        Arrays.sort(nums);
+        int left = 0, right = 1;
+        while (left < nums.length) {
+            int tempCount = 1;
+            while(right < nums.length ) {
+
+                if(nums[right - 1] == nums[right]) {
+                    right++;
+                    continue;
+                }
+
+                if(nums[right - 1] + 1 == nums[right] ) {
+                    tempCount++;
+                    right++;
+                } else {
+                    right++;
+                    break;
+                }
+            }
+            count = Math.max(count, tempCount);
+            left = right;
+        }
+        return count;
 
     }
 
