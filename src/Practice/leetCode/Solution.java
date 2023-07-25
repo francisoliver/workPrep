@@ -1,5 +1,6 @@
 package Practice.leetCode;
 
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -16,9 +17,12 @@ public class Solution {
 
 
 //        int[] arr = {6,14,15,26,31,36,38,41,42,45};
-        int[] arr = {4,5,6,7,8,9};
+        int[] arr = {9};
+//        int[] arr = {4,5,6,7,8,9};
 
         System.out.println(arithmeticTriplets(arr , 2));
+         shortestToChar("loveleetcode" , 'e');
+         System.out.println(plusOne(arr));
     }
     public static int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -624,6 +628,56 @@ public class Solution {
         }
 
         return output;
+
+    }
+
+    public static int[] shortestToChar(String s, char c) {
+
++        int position = s.indexOf(c), len = s.length();
+        int[] answer = new int[len];
+        int lastPosition = 0;
+
+        for (int i = 0; i < len; i++) {
+            if(position > 0) {
+                System.out.println("position" + position);
+                System.out.println("lastPosition" + lastPosition);
+
+                answer[i] = Math.abs(Math.min(position, lastPosition) - i);
+            } else {
+                answer[i] = Math.abs(position - i);
+            }
+            if(i==position) {//get the next c position
+                lastPosition = i;
+                position += s.substring(i + 1).indexOf(c) + 1;
+
+            }
+        }
+
+        return answer;
+
+    }
+
+    public static int[] plusOne(int[] digits) {
+
+        BigInteger sum = new BigInteger("0");
+        BigInteger multiplier = new BigInteger("1");
+
+        for(int i = digits.length -1; i >= 0; i--) {
+            BigInteger b = BigInteger.valueOf(digits[i]);
+            sum = sum.add(b.multiply(multiplier));
+            multiplier = multiplier.multiply(BigInteger.valueOf(10));
+        }
+
+        sum.add(new BigInteger("1"));
+        char[] value = String.valueOf(sum).toCharArray();
+        int[] result = new int[value.length];
+        //populate result from breaking down the sum :)
+        int index = 0;
+
+        for(char v: value) {
+            result[index++] = Integer.parseInt(String.valueOf(v));
+        }
+        return result;
 
     }
 
