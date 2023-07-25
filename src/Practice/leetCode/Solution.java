@@ -2,7 +2,6 @@ package Practice.leetCode;
 
 import java.math.BigInteger;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Solution {
 
@@ -18,22 +17,36 @@ public class Solution {
 
 //        int[] arr = {6,14,15,26,31,36,38,41,42,45};
 //        int[] arr = {1,1,1,2,2,3};
-        int[] arr = {1,2,0,1};
+        int[] arr = { -1, 0};
 //        int[] arr = {4,5,6,7,8,9};
 
 //        System.out.println(arithmeticTriplets(arr , 2));
 //         shortestToChar("loveleetcode" , 'e');
 //         System.out.println(plusOne(arr));
 //         System.out.println(topKFrequent(arr , 2));
-        System.out.println(longestConsecutiveSorted(arr));
+//        System.out.println(twoSum2(arr, 9));
+        int[] answer = twoSumP(arr, 9);
+        System.out.println("hello world!");
     }
-    public static int[] twoSum(int[] nums, int target) {
+
+    public static int[] twoSumP(int[] nums, int target) {
+
+        int left = 0, right = nums.length - 1;
+        while (nums[left] + nums[right] != target) {
+            if (nums[left] + nums[right] < target) left++;
+            else if (nums[left] + nums[right] > target)right--;
+        }
+        return new int[] {++left, ++right};
+
+    }
+
+    public static int[] twoSum2(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for(int i=0; i< nums.length; i++) {
             int diff = target - nums[i];
             if(map.containsKey(diff)) {
-                return new int[] {i, map.get(diff)};
+                return new int[] {i + 1, map.get(diff) + 1};
             }
             map.put(nums[i], i);
         }
@@ -758,5 +771,18 @@ public class Solution {
         return count;
 
     }
+
+//    public static int[] twoSum(int[] numbers, int target) {
+//
+//        HashMap<Integer, Integer> map = new HashMap<>();
+//        for(int i = 0; i <numbers.length; i++) {
+//            int num = numbers[i];
+//            map.put(num, i);
+//            if(map.containsValue(target - num)) {
+//                return new int[] {i, map.get(target - num)};
+//            }
+//        }
+//        return new int[2];
+//    }
 
 }
