@@ -12,7 +12,7 @@ public class Solution {
 //        containsDuplicate(arr);
 //        productExceptSelf(arr);
 
-        String[] strings = {"eat","tea","tan","ate","nat","bat"};
+        String[] strings = {"2","1","+","3","*"};
 
 
 //        int[] arr = {6,14,15,26,31,36,38,41,42,45};
@@ -25,9 +25,57 @@ public class Solution {
 //         System.out.println(plusOne(arr));
 //         System.out.println(topKFrequent(arr , 2));
 //        System.out.println(twoSum2(arr, 9));
-        int[] answer = twoSumP(arr, 9);
+//        int[] answer = twoSumP(arr, 9);
+        System.out.println(evalRPN(strings));
         System.out.println("hello world!");
+
     }
+    public static int evalRPN(String[] tokens) {
+
+        if (tokens.length == 1) return Integer.parseInt(tokens[0]);
+        Stack<Integer> stack = new Stack<>();
+        List<String> operator = Arrays.asList("+", "-", "/", "*");
+        int num1 = Integer.parseInt(tokens[0]), num2 = Integer.parseInt(tokens[1]);
+        for (int i = 2; i < tokens.length; i++) {
+            if (operator.contains(tokens[i])) {
+                num1 = stack.pop();
+                num2 = stack.pop();
+                switch (tokens[i]) {
+                    case "+":
+                        stack.push(num1 + num2);
+                        break;
+                    case "-":
+                        stack.push(num2 - num1);
+                        break;
+                    case "/":
+                        stack.push(num2 / num1);
+                        break;
+                    case "*":
+                        stack.push(num1 * num2);
+                        break;
+                }
+            } else {
+                stack.push(Integer.parseInt(tokens[i]));
+            }
+        }
+
+        return stack.peek();
+    }
+//review again!
+//    public List<List<Integer>> threeSum(int[] nums) {
+//
+////        int left = 0, len = nums.length, right = len -1, i = 0;
+////        Arrays.sort(nums);
+////        while(i < len) {
+////            left
+////            while( left <= right) {
+////
+////            }
+////        }
+////
+////        List<List<Integer>> result = new ArrayList<>();
+////        return result;
+//    }
 
     public static int[] twoSumP(int[] nums, int target) {
 
