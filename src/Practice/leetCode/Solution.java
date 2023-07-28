@@ -20,14 +20,14 @@ public class Solution {
         int[] arr = { -1, 0};
 //        int[] arr = {4,5,6,7,8,9};
 
-//        System.out.println(arithmeticTriplets(arr , 2));
-//         shortestToChar("loveleetcode" , 'e');
-//         System.out.println(plusOne(arr));
-//         System.out.println(topKFrequent(arr , 2));
-//        System.out.println(twoSum2(arr, 9));
-//        int[] answer = twoSumP(arr, 9);
-        System.out.println(evalRPN(strings));
         System.out.println("hello world!");
+
+        //[[1,3,5,7],[10,11,16,20],[23,30,34,60]]
+
+        int matrix[][] = {
+                {1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}
+        };
+        searchMatrix(matrix, 30);
 
     }
 
@@ -42,6 +42,62 @@ public class Solution {
             stack.add(currDay);
         }
         return ans;
+    }
+
+    public static boolean searchMatrix(int[][] matrix, int target) {
+        //L + ((R - L ) / 2)
+        //check vertical then horizontal
+        //perform binary search on [0][j]
+        int top = 0, height = matrix[0].length, bottom = height, left = 0, len = matrix.length, right = len;
+        int vertical = 0;
+        //int mid = left + (right - left) / 2;
+
+
+        for(int i =0; i < matrix.length; i++) {
+            for(int j= 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j]);
+                if(j< matrix.length) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println();
+        }
+
+        while( top < bottom && top < height - 1 ) {
+
+            vertical = top + (bottom - top) / 2;
+
+            if(matrix[vertical][0] == target) {
+                System.out.println(" gotcha! " + target + "Found at vert " + vertical + " mid 0");
+                return true;
+            } else if(matrix[vertical][0] < target) {
+                top = vertical + 1;
+            } else {
+                bottom = vertical -1;
+            }
+
+        }
+
+        System.out.print("horizontal search");
+
+        while( left <  right ) {
+
+            int mid = left + (right - left) / 2;
+
+            if(matrix[vertical][mid] == target) {
+                System.out.println("Found  " + target + " at vertical: " + vertical + " mid: " + mid );
+                return true;
+            } else if(matrix[vertical][mid] < target) {
+                right = mid + 1;
+            } else {
+                left = mid -1;
+            }
+        }
+        System.out.print("not found");
+
+
+
+        return false;
     }
     public static int evalRPN(String[] tokens) {
 
