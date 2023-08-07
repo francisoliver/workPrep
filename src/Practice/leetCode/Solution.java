@@ -12,33 +12,54 @@ public class Solution {
 //        containsDuplicate(arr);
 //        productExceptSelf(arr);
 
-        String[] strings = {"2","1","+","3","*"};
-
-
-//        int[] arr = {6,14,15,26,31,36,38,41,42,45};
-//        int[] arr = {1,1,1,2,2,3};
-        int[] arr = { -1, 0};
-//        int[] arr = {4,5,6,7,8,9};
+//        String[] strings = {"2","1","+","3","*"};
+//        int[] arr = { 3, 0, 3, 4,  0,1, 0 ,0,  1 ,1 ,0,0};
+        int[] arr = {0,1,0,2,1,0,1,3,2,1,2,1};
 
         System.out.println("hello world!");
 
-        //[[1,3,5,7],[10,11,16,20],[23,30,34,60]]
+//        System.out.println(getLeftPilar(arr));
+        System.out.println(trap(arr));
 
-//        int matrix[][] = {
-//                {1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}
-//        };
-//        searchMatrix(matrix, 3);
 
-        //binary
-        int[] binaryArray = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150};
-        Solution solution = new Solution();
-        solution.binarySearch(binaryArray, 20);
-        int[][] cars = {
-                {10,2}, {8,4}, {0,1}, {5,1}, {3,3}
-        };
+    }
+//    public static void getLeftPilar(int[] height) {
+//
+//        int left = 0, len = height.length;
+//        int leftPillar = 0;
+//        while(left < len -2) {
+//            if(height[left]==0) {
+//                left++;
+//                continue;
+//            }
+//            leftPillar = height[left];
+//            while (height[left + 1] > height[left] && left < len - 2) {
+//                left++;
+//                leftPillar = Math.max(leftPillar, height[left]);
+//            }
+//            System.out.println("Left pillar is: " + leftPillar);
+//            left++;
+//        }
+//
+//    }
+    public static int trap(int[] height) {
 
-        carFleet(12, cars);
+        int left=0, right = height.length - 1;
+        int leftPillar = height[left], rightPillar = height[right];
+        int rain =0;
 
+        while(left < right){
+            if (leftPillar < rightPillar) {
+                left++;
+                leftPillar = Math.max(leftPillar, height[left]);
+                rain += leftPillar - height[left];
+            } else {
+                right--;
+                rightPillar = Math.max(rightPillar, height[right]);
+                rain += rightPillar - height[right];
+            }
+        }
+        return rain;
     }
 
 //    public static int carFleet(int target, int[] position, int[] speed) {
