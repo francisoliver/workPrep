@@ -19,9 +19,47 @@ public class Solution {
         System.out.println("hello world!");
 
 //        System.out.println(getLeftPilar(arr));
-        System.out.println(trap(arr));
-        System.out.println(checkInclusion("ab", "eidboaoo"));
+//        System.out.println(trap(arr));
+//        System.out.println(checkInclusion("ab", "eidboaoo"));
+        printAlpha();
 
+    }
+
+    public static void printAlpha() {
+        String s1 = "alpha";
+        String s2 = "thequickbrownfoxjumpoverthelazydog";
+
+        int f1[] = new int[26];
+        for(int i = 0;i < s1.length();i++){
+            f1[s1.charAt(i) - 'a']++;
+        }
+        int tf[] = new int[26];
+
+        for(int i = 0;i < s1.length() - 1;i++){
+            tf[s2.charAt(i) - 'a']++;
+        }
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+        for(int n: f1) {
+            System.out.println(n);
+        }
+
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+        for(int n: tf) {
+            System.out.println(n);
+        }
+
+    }
+
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int left = 0, right = k - 1;
+        Deque<Integer> deque = new LinkedList<>();
+        
+        while(right < k)     {
+
+        }
+        return new int[2];
     }
     public static boolean checkInclusion(String s1, String s2) {
 
@@ -470,37 +508,56 @@ public class Solution {
 
 
     public static String minWindow(String s, String t) {
-        int start = 0, end = 0;
-        Map<String, Integer> map = new HashMap<>();
-        for(int i =0; i < t.length(); i++) {
-            String subs = t.substring(i, i + 1);
-            if(s.contains(subs)) {
-                if(map.containsKey(s)) {
 
-                    int prevLocation = map.get(subs);
+        Map<Character, Integer> targetFreq = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            targetFreq.put(c, targetFreq.getOrDefault(c, 0) + 1);
+        }
 
-                    if(s.substring(prevLocation + 1).contains(s)) {
-                        map.put(subs, i);
-                        int index = s.substring(prevLocation + 1).indexOf(subs);
-                        start = Math.min(start, index);
-                        end = Math.max(end, index);
+        int left = 0;
+        int minWindowLength = Integer.MAX_VALUE;
+        int minWindowStart = 0;
+        int remainingChars = t.length();
 
-                    } else {
-                        return "";
-                    }
+        for (int right = 0; right < s.length(); right++) {
+            char rightChar = s.charAt(right);
 
-                } else {
-                    map.put(subs, i);
-                    int index = s.indexOf(subs);
-                    start = Math.min(start, index);
-                    end = Math.max(end, index);
+            // Decrement the count of the current character from targetFreq map
+            if (targetFreq.containsKey(rightChar)) {
+                int newCount = targetFreq.get(rightChar) - 1;
+                targetFreq.put(rightChar, newCount);
+                if (newCount >= 0) {
+                    remainingChars--;
                 }
-            } else {
-                return "";
+            }
+
+            // If all characters in t are found, try to minimize the window
+            while (remainingChars == 0) {
+                int windowLength = right - left + 1;
+                if (windowLength < minWindowLength) {
+                    minWindowLength = windowLength;
+                    minWindowStart = left;
+                }
+
+                char leftChar = s.charAt(left);
+                // Increment the count of the character going out of the window
+                if (targetFreq.containsKey(leftChar)) {
+                    int newCount = targetFreq.get(leftChar) + 1;
+                    targetFreq.put(leftChar, newCount);
+                    if (newCount > 0) {
+                        remainingChars++;
+                    }
+                }
+
+                left++;
             }
         }
 
-        return s.substring(start, end + 1);
+        if (minWindowLength == Integer.MAX_VALUE) {
+            return "";
+        }
+
+        return s.substring(minWindowStart, minWindowStart + minWindowLength);
     }
     public static boolean isAnagram(String s, String t) {
         char[] _s = s.toCharArray();
