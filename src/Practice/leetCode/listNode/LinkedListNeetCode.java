@@ -1,7 +1,22 @@
-package Practice.leetCode;
+package Practice.leetCode.listNode;
 
 public class LinkedListNeetCode {
-    public void reorderList(ListNode head) {
+
+    public ListNode reverseList(ListNode head) {
+
+        ListNode prev = null;
+
+        while(head!= null) {
+            ListNode node = head.next;
+            head.next = prev;
+            prev = head;
+            head = node;
+        }
+
+        return prev;
+    }
+
+        public void reorderList(ListNode head) {
 
         //Find middle of list using a slow and fast pointer approach
         ListNode slow = head;
@@ -32,6 +47,26 @@ public class LinkedListNeetCode {
             first = tmp1;
             second = tmp2;
         }
+    }
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        final ListNode root = new ListNode();
+        ListNode temp = root;
+
+        while(list1!= null || list2!=null) {
+            //populate
+            if(list1.val < list2.val) {
+                temp.next = list1;
+                list1 = list1.next;
+            } else {
+                temp.next = list2;
+                list2 = list2.next;
+            }
+            temp = temp.next;
+        }
+        temp.next = list1 != null ? list1 : list2;
+        return root.next;
+
     }
 
 }
