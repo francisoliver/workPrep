@@ -1,5 +1,8 @@
 package Practice.leetCode.listNode;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class LinkedListNeetCode {
 
     public ListNode reverseList(ListNode head) {
@@ -68,5 +71,95 @@ public class LinkedListNeetCode {
         return root.next;
 
     }
+
+    public ListNode removeNthFromEndRev(ListNode head, int n) {
+
+        ListNode node = head;
+        while(n > 0) {
+            head = head.next;
+            n --;
+        }
+
+        ListNode temp = head.next.next;
+        head.next = temp;
+
+        return node;
+    }
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head == null || head.next == null) return null;
+
+        ListNode node = new ListNode(0, head);
+        node.next = head;
+        ListNode first = node, second = node;
+
+        while(n > 0) {
+            second = second.next;
+            n --;
+        }
+
+        while(second!=null) {
+            second = second.next;
+            first = first.next;
+        }
+
+        first.next = first.next.next;
+        return node.next;
+
+    }
+
+    public Node copyRandomList(Node head) {
+
+        HashMap<Node, Node> map = new HashMap<>();
+        Node node = head;
+
+        while(node != null) {
+            map.put(node, new Node(node.val));
+            node = node.next;
+        }
+        node = head;
+        while(node != null) {
+
+            map.get(node).next = map.get(node.next);
+            map.get(node).random = map.get(node.random);
+            node = node.next;
+        }
+
+        return map.get(head);
+    }
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+        ListNode head = new ListNode(0);
+        ListNode tail = head;
+        int c = 0;
+        while (l1 != null || l2 != null || c != 0) {
+
+            int d1 = (l1 != null) ? l1.val : 0;
+            int d2 = (l2 != null) ? l2.val : 0;
+            int n = d1 + d2 + c; //get the sum of two listNode + carry
+
+            ListNode sum;
+            if (n > 9) {
+                sum = new ListNode(n % 10);
+                c = 1;
+            } else {
+                sum = new ListNode(n % 10);
+                c = 0;
+            }
+
+            tail.next = sum;
+            tail = tail.next;
+
+            l1 = (l1 != null) ? l1.next : null;
+            l2 = (l2 != null) ? l2.next : null;
+
+        }
+
+        return head.next;
+
+    }
+
+
 
 }
