@@ -1,7 +1,6 @@
 package Practice.leetCode.listNode;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class LinkedListNeetCode {
 
@@ -157,6 +156,42 @@ public class LinkedListNeetCode {
         }
 
         return head.next;
+
+    }
+
+    public boolean hasCycle(ListNode head) {
+
+        ListNode fast = head, slow = head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if(fast == slow ) return true;
+        }
+        return false;
+
+    }
+
+    public int findDuplicate(int[] nums) {
+
+        int t = nums[0], h = nums[0];
+
+        do {
+            t = nums[t];
+            h = nums[nums[h]];
+        } while (t!=h);
+
+        t = nums[0];
+        while(t!=h) {
+            t = nums[t];
+            h = nums[h];
+        }
+
+        return t;
+
+
+        return t;
+
 
     }
 
