@@ -222,4 +222,39 @@ public class LinkedListNeetCode {
     }
 
 
+    public ListNode reverseKGroup(ListNode head, int k) {
+
+        ListNode dummy = new ListNode(0, head);
+        ListNode left = head;
+        ListNode right;
+        int ctr = 0;
+
+        while(head!=null) {
+            if(ctr < k) { //start counter untill we reach k
+                ctr++;
+
+            } else {
+                ListNode curr = left.next;
+                for(int i = 0; i < ctr; i++) {
+//                    if (right == null) {
+//                        return dummy.next;
+//                    }
+
+
+                    ListNode temp = left.next;
+                    curr.next = left;
+                }
+
+                //reverse loop using head.prev
+
+                ctr = 0;
+            }
+            head = head.next;
+        }
+
+
+        return new ListNode(0);
+    }
+
+
 }
