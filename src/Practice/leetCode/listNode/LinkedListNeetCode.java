@@ -221,40 +221,43 @@ public class LinkedListNeetCode {
         return dummy.next;
     }
 
-
     public ListNode reverseKGroup(ListNode head, int k) {
+        //base case
+        if(head.next == null) return head;
+        if(k == 1) return head;
 
-        ListNode dummy = new ListNode(0, head);
-        ListNode left = head;
-        ListNode right;
-        int ctr = 0;
+        //define pre and cur
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+        ListNode pre = dummy, cur = head;
 
-        while(head!=null) {
-            if(ctr < k) { //start counter untill we reach k
-                ctr++;
-
-            } else {
-                ListNode curr = left.next;
-                for(int i = 0; i < ctr; i++) {
-//                    if (right == null) {
-//                        return dummy.next;
-//                    }
-
-
-                    ListNode temp = left.next;
-                    curr.next = left;
-                }
-
-                //reverse loop using head.prev
-
-                ctr = 0;
+        //reverse the list
+        while(cur != null){
+            if(checkHasSpace(k, cur)){
+                pre = reverse(pre, cur, k);
+                cur = pre.next;
+            }else{
+                break;
             }
-            head = head.next;
         }
-
-
-        return new ListNode(0);
+        //return the head
+        return dummy.next;
     }
-
+    private boolean checkHasSpace(int k, ListNode cur){
+        for(int i = 1; i <= k; i++){
+            if(cur == null) return false;
+            cur = cur.next;
+        }
+        return true;
+    }
+    private ListNode reverse(ListNode pre, ListNode cur, int k){
+        for(int i = 0; i < k - 1; i++){
+            ListNode nex = cur.next;
+            cur.next = nex.next;
+            nex.next = pre.next;
+            pre.next = nex;
+        }
+        return cur;
+    }
 
 }
