@@ -2,6 +2,7 @@ package Practice.leetCode.trees;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Solution {
     public void sayHello() {
@@ -46,7 +47,21 @@ public class Solution {
     }
 
     public int maxDepth(TreeNode root) {
+        if(root ==null) return 0;
+        int count = 0;
+        LinkedList<TreeNode> nodes = new LinkedList<>();
 
+        while (!nodes.isEmpty()) {
+            count++;
+            int size = nodes.size();
+            for(int i=0; i < size; i++) {
+                TreeNode n = nodes.poll();
+                if(n.left != null) nodes.add(n.left);
+                if(n.right != null) nodes.add(n.right);
+            }
+
+        }
+        return count;
     }
 
 }
