@@ -81,4 +81,51 @@ public class Solution {
 
     }
 
+    public boolean isBalanced(TreeNode root) {
+        return getHeight(root) != -1;
+    }
+
+    public int getHeight(TreeNode root){
+
+        if (root == null) return 0;
+
+        int left = getHeight(root.left);
+        int right = getHeight(root.right);
+
+        if (left == -1 || right == -1)
+            return -1;
+        if (Math.abs(left - right) > 1)
+            return -1;
+
+        return 1 + Math.max(left, right);
+
+    }
+
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(p);
+        queue.add(q);
+
+        while (!queue.isEmpty()) {
+
+            TreeNode node1 = queue.poll(), node2 = queue.peek();
+
+            if( node1 == null && node2 == null) {
+                continue;
+            } else if(
+                    node1 == null || node2 == null || node1.val != node2.val
+            )  {
+                return false;
+            }
+            queue.add(node1.left);
+            queue.add(node2.left);
+            queue.add(node1.right);
+            queue.add(node2.right);
+        }
+
+        return true;
+
+    }
+
 }
