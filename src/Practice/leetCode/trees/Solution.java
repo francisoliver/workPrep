@@ -128,4 +128,28 @@ public class Solution {
 
     }
 
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+
+            TreeNode node = queue.poll();
+
+            if(node == null) {
+                return false;
+            }
+
+            if(node.val == subRoot.val && isSameTree(node, subRoot)) {
+                return true;
+            }
+
+            if(node.left != null ) queue.add(node.left);
+            if(node.right != null ) queue.add(node.right);
+
+        }
+        return false;
+    }
+
 }
