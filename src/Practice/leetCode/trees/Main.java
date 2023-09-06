@@ -39,7 +39,7 @@ public class Main {
         list.add(3);
         list.add(4);
 
-        list.push();
+        list.push(1);
 
         System.out.println(list);
         list.poll();

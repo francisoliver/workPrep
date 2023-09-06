@@ -109,7 +109,7 @@ public class Solution {
 
         while (!queue.isEmpty()) {
 
-            TreeNode node1 = queue.poll(), node2 = queue.peek();
+            TreeNode node1 = queue.poll(), node2 = queue.poll();
 
             if( node1 == null && node2 == null) {
                 continue;
