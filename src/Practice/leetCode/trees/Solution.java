@@ -1,8 +1,6 @@
 package Practice.leetCode.trees;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class Solution {
     public void sayHello() {
@@ -159,6 +157,38 @@ public class Solution {
         if(p.val < root.val && q.val < root.val)
             return lowestCommonAncestor(root.left, p, q);
         return root;
+
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+
+        List<List<Integer>> result = new ArrayList<>();
+        if(root==null) return result;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while(!queue.isEmpty()) {
+
+            List<Integer> values = new ArrayList<>();
+
+            int size = queue.size();
+
+            while(size > 0) {
+
+                TreeNode node = queue.poll();
+                values.add(node.val);
+                if(node.left != null) queue.add(node.left);
+                if(node.right != null) queue.add(node.right);
+
+                size--;
+            }
+
+            result.add(values);
+
+        }
+
+        return result;
 
     }
 
