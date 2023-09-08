@@ -215,4 +215,13 @@ public class Solution {
 
     }
 
+    public int kthSmallest(TreeNode root, int k) {
+
+        List<Integer> list = new ArrayList<>();
+        helper(root, list);
+
+        return list.get(k - 1);
+
+    }
+
 }
