@@ -165,7 +165,7 @@ public class Solution {
         List<List<Integer>> result = new ArrayList<>();
         if(root==null) return result;
 
-        Queue<TreeNode> queue = new LinkedList<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         while(!queue.isEmpty()) {
@@ -189,6 +189,29 @@ public class Solution {
         }
 
         return result;
+
+    }
+
+    void helper(TreeNode treeNode, List<Integer> inOrderList) {
+        if (treeNode == null)
+            return;
+
+        helper(treeNode.left, inOrderList);
+        inOrderList.add(treeNode.val);
+        helper(treeNode.right, inOrderList);
+    }
+
+    public boolean isValidBST(TreeNode root) {
+
+        List<Integer> list = new ArrayList<>();
+
+        helper(root, list);
+
+        int pre = list.get(0);
+        for(int i = 1; i<list.size(); i++) {
+            if(pre>=list.get(i)) return false;
+        }
+        return true;
 
     }
 
