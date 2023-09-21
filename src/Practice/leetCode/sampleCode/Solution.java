@@ -46,6 +46,33 @@ public class Solution {
 
         return false;
 
+    }
+
+    public int romanToInt(String s) {
+
+        int result = 0, number = 0, prev = 0;
+        char n;
+        for (int i = s.length() - 1; i >= 0; i--) {
+
+            n = s.charAt(i);
+            if(n=='I') number = 1;
+            else if(n=='V') number = 5;
+            else if(n=='X') number = 10;
+            else if(n=='L') number = 50;
+            else if(n=='C') number = 100;
+            else if(n=='D') number = 500;
+            else if(n=='M') number = 1000;
+
+            if (number < prev) {
+                result -= number;
+            }
+            else {
+                result += number;
+            }
+            prev = number;
+        }
+
+        return result;
 
     }
 }
