@@ -1,8 +1,9 @@
 package Practice.leetCode.sampleCode;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.TreeSet;
+import Practice.leetCode.listNode.ListNode;
+import Practice.leetCode.trees.TreeNode;
+
+import java.util.*;
 
 public class Solution {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
@@ -94,4 +95,101 @@ public class Solution {
         }
         return sb.toString();
     }
+
+    public int removeDuplicates(int[] nums) {
+        int index = 1;
+        for(int i =0; i < nums.length - 1; i++) {
+            if(nums[i]!= nums[i+1]) {
+                nums[index++] = nums[i+1];
+            }
+        }
+        return index;
+    }
+
+    public String addBinary(String a, String b) {
+
+        StringBuilder sb = new StringBuilder();
+        int i = a.length() - 1, j = b.length() -1, c = 0;
+
+        while(i>=0||j>=0) {
+            int sum = c;
+            if(i>=0) sum+=a.charAt(i) - '0';
+            if(j>=0) sum+=b.charAt(j) - '0';
+            sb.append(sum % 2) ;
+            c = sum / 2;
+            i--;j--;
+        }
+
+        if(c!=0) sb.append(c);
+        return sb.reverse().toString();
+
+    }
+    public ListNode deleteDuplicates(ListNode head) {
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode current = dummy;
+
+        while (current.next != null && dummy.next.next != null) {
+            if (current.next.next.val == current.next.val) {
+                int similar = current.next.val;
+                while(current.next!=null && current.next.val==similar){
+                    current.next = current.next.next;
+                }
+            } else {
+                current = current.next;
+            }
+        }
+
+        return dummy.next;
+
+    }
+
+    public List<Integer> inorderTraversal(TreeNode node) {
+        List<Integer> result = new ArrayList<>();
+        if(node==null) return result;
+        Stack<TreeNode> treeNodeStack = new Stack<>();
+
+        while (node!= null || !treeNodeStack.isEmpty()) {
+            while(node!=null) {
+                treeNodeStack.push(node);
+                node = node.left;
+            }
+            node = treeNodeStack.pop();
+            result.add(node.val);
+            node = node.right;
+        }
+
+        return result;
+    }
+
+    private List<Integer> res = new ArrayList<>();
+    public List<Integer> inorderTraversalDFS(TreeNode root) {
+        traverseInorder(root);
+        return res;
+    }
+
+    public List<Integer> postorderTraversal(TreeNode root) {
+        traversePostOrder(root);
+        return res;
+    }
+
+    private void traverseInorder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        traverseInorder(root.left);
+        res.add(root.val);
+        traverseInorder(root.right);
+    }
+    private void traversePostOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        traversePostOrder(root.left);
+        traversePostOrder(root.right);
+        res.add(root.val);
+    }
+
+
 }
