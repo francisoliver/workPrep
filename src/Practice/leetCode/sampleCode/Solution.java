@@ -6,6 +6,18 @@ import Practice.leetCode.trees.TreeNode;
 import java.util.*;
 
 public class Solution {
+
+    static String[] mors = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+//        int[] array = {1,2,3,4,5,6,7, 1 , 1 ,3, 5, 7};
+//        int[] array = {8,1,2,2,3};
+//        solution.smallerNumbersThanCurrent(array);
+        String key = "the quick brown fox jumps over the lazy dog";
+        String message = "vkbs bs t suepuv";
+        solution.uniqueMorseRepresentations();
+//        solution.decodeMessage(key, message);
+    }
     public boolean containsNearbyDuplicate(int[] nums, int k) {
 
         if(nums == null || nums.length < 2 || k == 0) return false;
@@ -189,6 +201,129 @@ public class Solution {
         traversePostOrder(root.left);
         traversePostOrder(root.right);
         res.add(root.val);
+    }
+    public int numJewelsInStones(String jewels, String stones) {
+
+        int output = 0;
+        for(char c: stones.toCharArray()) {
+            if(jewels.contains(String.valueOf(c))) output++;
+        }
+        return output;
+
+    }
+
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+
+        TreeMap<Integer, Integer> set = new TreeMap<>();
+        for(int n: nums) {
+
+            if(set.containsKey(n)) {
+                set.put(n, set.get(n) + 1);
+            } else {
+                set.put(n, 1);
+            }
+
+        }
+
+        int size = 0;
+
+        for(int n: set.keySet()) {
+            int temp = set.get(n);
+            set.put(n, size);
+            size = size + temp;
+        }
+        for(int i=0; i<nums.length; i++){
+            nums[i] = set.get(nums[i]);
+        }
+
+        return nums;
+    }
+
+    public String decodeMessage(String key, String message) {
+
+        HashMap<Character, Character> map = new HashMap<>();
+        char a = 'a';
+        key = key.replaceAll(" ", "");
+
+        for(Character c: key.toCharArray()) {
+            if (!map.containsKey(c)) {
+                map.put(c, a++);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(Character c: message.toCharArray()) {
+            if(c == ' ') {
+                sb.append(" ");
+            } else {
+                sb.append(map.get(c));
+            }
+
+        }
+
+        return sb.toString();
+    }
+
+    public boolean checkIfPangram(String sentence) {
+
+        HashSet<Character> set = new HashSet<>();
+        for(int i=0; i<sentence.length(); i++) {
+            char c = sentence.charAt(i);
+            if(c>='a' && c <='z') {//can use Character.isAlphabetic(c)
+                set.add(c);
+            }
+        }
+
+        return set.size()>=26;
+
+    }
+
+    public int uniqueMorseRepresentations(String[] words) {
+        HashSet<String> set = new HashSet<>();
+        for (String word : words) {
+            StringBuilder sb = new StringBuilder();
+            for (char c : word.toCharArray()) {
+                sb.append(mors[c - 97]);
+            }
+            System.out.println(sb.toString());
+            set.add(sb.toString());
+        }
+        return set.size();
+    }
+
+    public int countConsistentStrings(String allowed, String[] words) {
+
+        int counter = 0;
+        for(String word: words) {
+            boolean flag = true;
+            for(char c: allowed.toCharArray()) {
+                if(-1 == word.indexOf(c)) {
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag) counter++;
+        }
+        return counter;
+
+    }
+
+    public String[] sortPeople(String[] names, int[] heights) {
+
+        HashMap<Integer, String> map = new HashMap<>();
+        for(int i=0; i < names.length; i++) {
+            map.put(heights[i], names[i]);
+        }
+
+        Arrays.sort(heights);
+        int index = 0;
+        String[] result = new String[names.length];
+
+        for(int i= names.length -1; i >= 0; i--) {
+            result[index++] = map.get(heights[i]);
+        }
+
+        return result;
     }
 
 
