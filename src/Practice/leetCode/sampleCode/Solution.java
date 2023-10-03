@@ -40,9 +40,11 @@ public class Solution {
 
 
 //        solution.destCity(city);
-        solution.areOccurrencesEqual("aaabb");
+//        solution.areOccurrencesEqual("aaabb");
 //        solution.uniqueMorseRepresentations();
 //        solution.decodeMessage(key, message);
+
+        solution.sortString("aaaabbbbcccc");
     }
     public boolean containsNearbyDuplicate(int[] nums, int k) {
 
@@ -447,6 +449,70 @@ public class Solution {
         }
         return sum;
 
+    }
+
+    public String sortString(String s) {
+
+        TreeMap<Character, Integer> set = new TreeMap();
+
+        for(char c: s.toCharArray()) {
+            set.put(c, set.getOrDefault(c, 0) + 1);
+        }
+
+        boolean flag = true;
+        String output = "";
+        while (output.length() < s.length()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for(char c: set.keySet()) {
+                if(set.get(c)!=0) {
+                    set.put(c, set.get(c) - 1);
+                    stringBuilder.append(c);
+                }
+            }
+            if(flag) {
+                output += stringBuilder.toString();
+                flag = false;
+            } else {
+                output += stringBuilder.reverse().toString();
+                flag = true;
+            }
+
+        }
+
+        return output;
+    }
+
+    public String sortString2(String s) {
+
+        int[] arr = new int[26];
+
+        for(int i=0; i<s.length(); i++){
+            int index = s.charAt(i)-'a';
+            arr[index] = arr[index]+1;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        while(sb.length() < s.length()){
+
+            for(int i=0; i<26; i++){
+                if (arr[i]>0){
+                    char ch = (char)('a'+i);
+                    sb.append(ch);
+                    arr[i]--;
+                }
+            }
+
+            for(int i=25; i>=0; i--){
+                if (arr[i]>0){
+                    char ch = (char)('a'+i);
+                    sb.append(ch);
+                    arr[i]--;
+                }
+            }
+
+        }
+
+        return sb.toString();
     }
 
 
