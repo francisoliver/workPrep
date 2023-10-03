@@ -15,7 +15,33 @@ public class Solution {
 //        solution.smallerNumbersThanCurrent(array);
         String key = "the quick brown fox jumps over the lazy dog";
         String message = "vkbs bs t suepuv";
-        solution.uniqueMorseRepresentations();
+
+        //[["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]
+        List<List<String >> city = new ArrayList<>();
+        String newYork = "new york";
+        String lima = "lima";
+        String london = "london";
+        String sao = "sao paulo";
+
+        List<String> a = new ArrayList<>();
+        a.add(london);
+        a.add(newYork);
+        city.add(a);
+        //
+        List<String> b = new ArrayList<>();
+        b.add(newYork);
+        b.add(lima);
+        city.add(b);
+        //
+        List<String> c = new ArrayList<>();
+        c.add(lima);
+        c.add(sao);
+        city.add(c);
+
+
+//        solution.destCity(city);
+        solution.areOccurrencesEqual("aaabb");
+//        solution.uniqueMorseRepresentations();
 //        solution.decodeMessage(key, message);
     }
     public boolean containsNearbyDuplicate(int[] nums, int k) {
@@ -324,6 +350,103 @@ public class Solution {
         }
 
         return result;
+    }
+
+    public int maximumNumberOfStringPairs(String[] words) {
+        int ctr = 0;
+
+        for(int i = 0; i < words.length - 1; i++) {
+            StringBuilder sb = new StringBuilder(words[i]);
+            String rev = sb.reverse().toString();
+            for(int j = i+ 1; j < words.length; j++) {
+                if(rev.equals(words[j])) ctr++;
+            }
+        }
+
+        return ctr;
+
+    }
+
+    public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
+
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(new ArrayList<Integer>(getDifference(nums2, nums1)));
+        result.add(new ArrayList<Integer>(getDifference(nums1, nums2)));
+        return result;
+
+    }
+
+    HashSet<Integer> getDifference(int[] nums1, int[] nums2) {
+
+        HashSet<Integer> set = new HashSet<>();
+        for(int n: nums1) {
+            set.add(n);
+        }
+
+        HashSet<Integer> result = new HashSet<>();
+
+        for(int n: nums2) {
+            if(!set.contains(n)) result.add(n);
+        }
+        return result;
+
+    }
+
+    public String destCity(List<List<String>> paths) {
+
+        List<String> city = new ArrayList<>();
+        List<String> destination = new ArrayList<>();
+
+        for(List<String> path: paths) {
+            city.add(path.get(0));
+            destination.add(path.get(1));
+        }
+
+        for(String s : city) {
+            destination.remove(s);
+
+        }
+        return destination.get(0);
+
+    }
+
+    public boolean areOccurrencesEqual(String s) {
+
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for(char c: s.toCharArray()) {
+            map.put(c, map.getOrDefault(c ,0) + 1);
+        }
+
+        int size = 0;
+        for(int n: map.values()) {
+            if(size==0) {
+                size = n;
+            } else if(n==size) {
+                continue;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int sumOfUnique(int[] nums) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int n: nums) {
+            map.put(n, map.getOrDefault(n, 0) + 1);
+        }
+
+        int sum = 0;
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if(entry.getValue() > 1) {
+                continue;
+            }
+            sum+=entry.getKey();
+        }
+        return sum;
+
     }
 
 
