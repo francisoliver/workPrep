@@ -13,6 +13,7 @@ public class Solution {
 //        int[] array = {1,2,3,4,5,6,7, 1 , 1 ,3, 5, 7};
 //        int[] array = {8,1,2,2,3};
 //        solution.smallerNumbersThanCurrent(array);
+        /*
         String key = "the quick brown fox jumps over the lazy dog";
         String message = "vkbs bs t suepuv";
 
@@ -44,7 +45,12 @@ public class Solution {
 //        solution.uniqueMorseRepresentations();
 //        solution.decodeMessage(key, message);
 
-        solution.sortString("aaaabbbbcccc");
+//        solution.sortString("aaaabbbbcccc");
+//        solution.numberOfPairs(new int[]{1,3,2,1,3,2,2});
+*/
+        int[] arr = new int[]{1,5,2,4,1};
+        solution.minOperations(arr);
+
     }
     public boolean containsNearbyDuplicate(int[] nums, int k) {
 
@@ -514,6 +520,102 @@ public class Solution {
 
         return sb.toString();
     }
+    public int[] numberOfPairs(int[] nums) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int n: nums){
+            map.put(n, map.getOrDefault(n, 0)+1);
+        }
+
+        int frequencySum = 0;
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            frequencySum += entry.getValue() / 2;
+        }
+
+        return new int[] { frequencySum, nums.length - frequencySum * 2 };
+    }
+
+    public int[] buildArray(int[] nums) {
+
+
+        int[] arr = new int[nums.length];
+        int index = 0;
+        for(int n: nums) {
+            arr[index++] = nums[n];
+        }
+
+        return arr;
+    }
+
+    public int[] getConcatenation(int[] nums) {
+
+        int len = nums.length * 2;
+        int[] arr = new int[len];
+
+        for(int i = 0; i < len; i++) {
+            int index = i >= nums.length ? i - nums.length  : i;
+            arr[i] = nums[index];
+        }
+
+        return arr;
+    }
+
+    public String interpret(String command) {
+
+        StringBuilder sb = new StringBuilder();
+        int index = 0;
+        while(index < command.length()) {
+
+            if(command.charAt(index) == 'G') {
+                sb.append("G");
+                index++;
+            } else if(command.charAt(index + 1) == 'a') {
+                sb.append("al");
+                index+= 4;
+            } else {
+                sb.append("o");
+                index+= 2;
+            }
+        }
+
+        return sb.toString();
+
+    }
+    
+    public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+
+        int count = 0, choice;
+
+        for(List<String> item: items) {
+            if(ruleKey.equals("type")) {
+                choice = 0;
+            } else if(ruleKey.equals("color")) {
+                choice = 1;
+            } else {
+                choice = 2;
+            }
+            if(item.get(choice).equals(ruleValue))
+                count++;
+        }
+
+        return count;
+
+    }
+
+    public int minOperations(int[] nums) {
+
+        int operations = 0;
+        for(int i = 0; i< nums.length - 1; i++) {
+            if(nums[i]>=nums[i+1]) {
+                int temp = nums[i] - nums[i+1] + 1;
+                nums[i+1] = temp + nums[i+1];
+                operations+=temp;
+            }
+        }
+        return operations;
+
+    }
+
 
 
 }
