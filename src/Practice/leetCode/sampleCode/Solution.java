@@ -616,6 +616,39 @@ public class Solution {
 
     }
 
+    public List<List<Integer>> groupThePeople(int[] groupSizes) {
 
+        HashMap<Integer, List<Integer>> map = new HashMap<>();
+        List<List<Integer>> output = new ArrayList<>();
+        for(int i =0; i < groupSizes.length; i++) {
+            int size = groupSizes[i];
+            List<Integer> list = map.getOrDefault(size, new ArrayList<>());
+            list.add(i);
+            map.put(size, list);
+            if(size == map.get(size).size()) {
+                output.add(new ArrayList<>(map.get(size)));
+                map.get(size).clear();
+            }
+        }
+
+        return output;
+    }
+
+    public ListNode removeElements(ListNode head, int val) {
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode res = dummy;
+
+        while(dummy.next!=null ) {
+            if(dummy.next.val==val) {
+                dummy.next = dummy.next.next;
+            } else {
+                dummy = dummy.next;
+            }
+        }
+        return res.next;
+
+    }
 
 }
