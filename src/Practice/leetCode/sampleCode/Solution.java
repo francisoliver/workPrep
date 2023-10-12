@@ -651,4 +651,44 @@ public class Solution {
 
     }
 
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null) return null;
+
+        ListNode a = headA;
+        ListNode b = headB;
+
+        //if a & b have different len, then we will stop the loop after second iteration
+        while( a != b){
+            //for the end of first iteration, we just reset the pointer to the head of another linkedlist
+            a = a == null? headB : a.next;
+            b = b == null? headA : b.next;
+        }
+
+        return a;
+
+    }
+
+    public int countNodes(TreeNode root) {
+
+        Stack<TreeNode> stack = new Stack<>();
+        int count = 0;
+        stack.push(root);
+
+        while(!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            if(node==null) return count;
+
+            if(node.left!=null) {
+                stack.push(node.left);
+            }
+            if(node.right!=null) {
+                stack.push(node.right);
+            }
+            count++;
+
+        }
+        return count;
+
+    }
+
 }
