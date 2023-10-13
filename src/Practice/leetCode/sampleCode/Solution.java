@@ -762,4 +762,45 @@ public class Solution {
         return answer;
     }
 
+    public List<Integer> minSubsequence(int[] nums) {
+
+        Arrays.sort(nums);
+        int initial = nums[nums.length - 1], totalSum = initial;
+        for(int i = nums.length -1 ; i >= 0; i--) {
+            totalSum+= nums[i];
+        }
+        List<Integer> result = new ArrayList<>();
+        int index = nums.length -1;
+        while(initial <= totalSum) {
+            result.add(nums[index]);
+            totalSum-=nums[index];
+            initial+=nums[index--];
+
+        }
+        return result;
+
+    }
+
+    public String maximumOddBinaryNumber(String s) {
+
+        int end = s.length(), numberOfOnes = - 1;
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == '1') numberOfOnes++;
+        }
+        StringBuilder sb = new StringBuilder();
+        int start = numberOfOnes;
+        while(numberOfOnes>0) {
+            sb.append(1);
+            numberOfOnes--;
+        }
+
+        while(start < end - 1) {
+            sb.append(0);
+            start++;
+        }
+        sb.append(1);
+        return sb.toString();
+
+    }
+
 }
