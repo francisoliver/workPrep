@@ -48,8 +48,10 @@ public class Solution {
 //        solution.sortString("aaaabbbbcccc");
 //        solution.numberOfPairs(new int[]{1,3,2,1,3,2,2});
 */
-        int[] arr = new int[]{1,5,2,4,1};
-        solution.minOperations(arr);
+//        int[] arr = new int[]{1,5,2,4,1};
+//        solution.minOperations(arr);
+//        solution.isIsomorphic("foo", "bar");
+        solution.threeSum(new int[]{-1,0,1,2,-1,-4});
 
     }
     public boolean containsNearbyDuplicate(int[] nums, int k) {
@@ -689,6 +691,75 @@ public class Solution {
         }
         return count;
 
+    }
+
+    public boolean isIsomorphic(String s, String t) {
+
+        HashMap<Character, List<Integer>> map = buildMap(s);
+        HashMap<Character, List<Integer>> map2 = buildMap(t);
+        boolean flag = true;
+        if(map.size()!=map2.size()) return false;
+
+        for(int i = 0; i< s.length(); i++) {
+            if(!map.get(s.charAt(i)).containsAll(map2.get(t.charAt(i)))) {
+                flag = false;
+                break;
+            }
+        }
+
+        return flag;
+
+    }
+
+    public HashMap<Character, List<Integer>> buildMap(String s) {
+
+        HashMap<Character, List<Integer>> map = new HashMap<>();
+        int index = 0;
+        for(char c: s.toCharArray()) {
+            List<Integer> list = new ArrayList<>();
+            if(map.containsKey(c)) {
+                list.addAll(map.get(c));
+            }
+            list.add(index++);
+            map.put(c, list);
+        }
+        return map;
+
+    }
+
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums); // Sorted Array
+        List<List<Integer>> answer = new ArrayList<>();
+
+        if (nums.length < 3) {
+            return answer;
+        }
+
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+
+        for (int i = 0; i < nums.length; ++i) {
+            hashMap.put(nums[i], i);
+        }
+
+        for (int i = 0; i < nums.length - 2; ++i) {
+            if (nums[i] > 0) {
+                break;
+            }
+            System.out.println("entering loop value of I is " + i);
+            for (int j = i + 1; j < nums.length - 1; ++j) {
+                int required = -1 * (nums[i] + nums[j]);
+                if (hashMap.containsKey(required) && hashMap.get(required) > j) {
+                    answer.add(Arrays.asList(nums[i], nums[j], required));
+                }
+                j = hashMap.get(nums[j]);
+                System.out.println("printing J " +j);
+            }
+
+            i = hashMap.get(nums[i]);
+            System.out.println("printing I " +i);
+        }
+
+        return answer;
     }
 
 }
