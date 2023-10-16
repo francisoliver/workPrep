@@ -803,4 +803,32 @@ public class Solution {
 
     }
 
+    public int kthFactor(int n, int k) {
+
+        for(int i = 1; i<=n; i++) {
+            if(n % i ==0) {
+                k--;
+            }
+            if(0==k) {
+                return i;
+            }
+        }
+        return -1;
+
+    }
+
+    public int minSubArrayLen(int target, int[] nums) {
+        int min = Integer.MAX_VALUE;
+        int left = 0, sum = 0, right = 0;
+        while(right < nums.length ) {
+            sum+=nums[right];
+            while(sum>=target) {
+                min = Math.min(min, right - left + 1);
+                sum -= nums[left++];
+            }
+            right++;
+        }
+        return min == Integer.MAX_VALUE ? 0 : min;
+    }
+
 }
