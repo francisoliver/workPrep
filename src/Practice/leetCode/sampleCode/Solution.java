@@ -51,7 +51,8 @@ public class Solution {
 //        int[] arr = new int[]{1,5,2,4,1};
 //        solution.minOperations(arr);
 //        solution.isIsomorphic("foo", "bar");
-        solution.threeSum(new int[]{-1,0,1,2,-1,-4});
+//        solution.threeSum(new int[]{-1,0,1,2,-1,-4});
+        System.out.println(solution.findNonMinOrMax(new int[]{3, 2,1}));
 
     }
     public boolean containsNearbyDuplicate(int[] nums, int k) {
@@ -829,6 +830,79 @@ public class Solution {
             right++;
         }
         return min == Integer.MAX_VALUE ? 0 : min;
+    }
+
+    public int splitNum(int num) {
+
+        char[] arr = String.valueOf(num).toCharArray();
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        boolean flag = true;
+        Arrays.sort(arr);
+        for(char c: arr) {
+            if(flag) {
+                sb1.append(c);
+            } else {
+                sb2.append(c);
+            }
+            flag=!flag;
+        }
+
+        return Integer.parseInt(sb1.toString()) + Integer.parseInt(sb2.toString());
+
+    }
+
+    public int findNonMinOrMax(int[] nums) {
+
+        if(nums.length<3) return -1;
+        if(nums[0] < nums[1] && nums[1] < nums[2]) {
+            return nums[1];
+        } else if (nums[0] < nums[1] && nums[1] > nums[2]) {
+            return nums[2];
+        } else {
+            return nums[0];
+        }
+
+    }
+
+    public int fillCups(int[] amount) {
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a, b)->(b-a));
+        int counter = 0;
+        pq.offer(amount[0]);
+        pq.offer(amount[1]);
+        pq.offer(amount[2]);
+
+        while(!pq.isEmpty()) {
+            int first = pq.poll();
+            int second = pq.poll();
+            if(first<=0 && second<=0) break;
+            pq.offer(--first);
+            pq.offer(--second);
+            counter++;
+        }
+        return counter;
+    }
+
+    public boolean isPalindrome(String s) {
+        s = sanitizeString(s);
+        int left = 0;
+        int right = s.length() - 1;
+        while(left<right) {
+            if(s.charAt(left++)!=s.charAt(right--)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String sanitizeString(String s) {
+
+        StringBuilder sb = new StringBuilder();
+        for(char c: s.toLowerCase().toCharArray()) {
+            if(Character.isLetterOrDigit(c)) sb.append(c);
+        }
+        return sb.toString();
+
     }
 
 }
