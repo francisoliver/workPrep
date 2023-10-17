@@ -696,19 +696,16 @@ public class Solution {
 
     public boolean isIsomorphic(String s, String t) {
 
-        HashMap<Character, List<Integer>> map = buildMap(s);
-        HashMap<Character, List<Integer>> map2 = buildMap(t);
-        boolean flag = true;
-        if(map.size()!=map2.size()) return false;
-
-        for(int i = 0; i< s.length(); i++) {
-            if(!map.get(s.charAt(i)).containsAll(map2.get(t.charAt(i)))) {
-                flag = false;
-                break;
-            }
-        }
-
-        return flag;
+        int[] sMap = new int[200];
+        int[] tMap = new int[200];
+         for(int i = 0; i< s.length(); i++) {
+             if(sMap[s.charAt(i)]!= tMap[t.charAt(i)]) {
+                 return false;
+             }
+             sMap[s.charAt(i)] = i + 1;
+             tMap[t.charAt(i)] = i + 1;
+         }
+         return true;
 
     }
 
