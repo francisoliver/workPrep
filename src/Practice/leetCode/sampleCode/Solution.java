@@ -918,4 +918,40 @@ public class Solution {
 
     }
 
+    public int majorityElement(int[] nums) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int count = 0;
+        int element = 0;
+        for(int n: nums) {
+            map.put(n, map.getOrDefault(n , 0) + 1 );
+        }
+        for(Map.Entry<Integer, Integer> entry: map.entrySet()) {
+            int val = entry.getValue();
+            int key = entry.getKey();
+            if(val > count) {
+                count = val;
+                element = key;
+            }
+        }
+        return element;
+
+    }
+
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+
+        List<Boolean> res = new ArrayList<>();
+        int max = 0;
+        for(int candy: candies) {
+            max = Math.max(max, candy);
+        }
+
+        for(int i = 0; i < candies.length; i++) {
+            res.add( candies[i] > max );
+        }
+        return res;
+
+    }
+
+
 }
