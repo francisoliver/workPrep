@@ -10,48 +10,6 @@ public class Solution {
     static String[] mors = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
     public static void main(String[] args) {
         Solution solution = new Solution();
-//        int[] array = {1,2,3,4,5,6,7, 1 , 1 ,3, 5, 7};
-//        int[] array = {8,1,2,2,3};
-//        solution.smallerNumbersThanCurrent(array);
-        /*
-        String key = "the quick brown fox jumps over the lazy dog";
-        String message = "vkbs bs t suepuv";
-
-        //[["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]
-        List<List<String >> city = new ArrayList<>();
-        String newYork = "new york";
-        String lima = "lima";
-        String london = "london";
-        String sao = "sao paulo";
-
-        List<String> a = new ArrayList<>();
-        a.add(london);
-        a.add(newYork);
-        city.add(a);
-        //
-        List<String> b = new ArrayList<>();
-        b.add(newYork);
-        b.add(lima);
-        city.add(b);
-        //
-        List<String> c = new ArrayList<>();
-        c.add(lima);
-        c.add(sao);
-        city.add(c);
-
-
-//        solution.destCity(city);
-//        solution.areOccurrencesEqual("aaabb");
-//        solution.uniqueMorseRepresentations();
-//        solution.decodeMessage(key, message);
-
-//        solution.sortString("aaaabbbbcccc");
-//        solution.numberOfPairs(new int[]{1,3,2,1,3,2,2});
-*/
-//        int[] arr = new int[]{1,5,2,4,1};
-//        solution.minOperations(arr);
-//        solution.isIsomorphic("foo", "bar");
-//        solution.threeSum(new int[]{-1,0,1,2,-1,-4});
         System.out.println(solution.findNonMinOrMax(new int[]{3, 2,1}));
 
     }
@@ -964,6 +922,59 @@ public class Solution {
             }
         }
         return sb.toString();
+
+    }
+
+    public int minimumSum(int[] nums) {
+        int len = nums.length;
+        int min = Integer.MAX_VALUE;
+        for(int i = 0; i < len - 2; i++) {
+            for(int j = i + 1; j < len - 1; j++) {
+                for(int k = j + 1; k < len; k++) {
+                    if(nums[i] < nums[j] && nums[k] < nums[j]) {
+                        min = Math.min(min, nums[i] + nums[j] + nums[k]);
+                    }
+                }
+            }
+        }
+        return min == Integer.MAX_VALUE ? -1 : min;
+    }
+
+    public int[] findIndices(int[] nums, int indexDifference, int valueDifference) {
+
+        if(indexDifference == 0 && valueDifference == 0)
+            return new int[] {0 , 0};
+        for(int i = 0; i < nums.length + 1; i++) {
+            int j = i + 1;
+            while(j < nums.length) {
+                if(Math.abs(i - j) >= indexDifference && Math.abs(nums[i] - nums[j]) >= valueDifference ) {
+                    return new int[] {i , j};
+                }
+                j++;
+            }
+        }
+        return new int[] {-1 , -1};
+
+    }
+
+    public List<String> summaryRanges(int[] nums) {
+
+        ArrayList<String> output = new ArrayList<>();
+        int i = 0, j = 0;
+        while(i < nums.length) {
+            j = i;
+            while(j < nums.length - 1 && nums[j] + 1 == nums[j + 1]) {
+                j++;
+            }
+            if(i==j) {
+                output.add(String.valueOf(nums[i]));
+            } else {
+                output.add(nums[i] + "->" + nums[j]);
+            }
+
+            i = j + 1;
+        }
+        return output;
 
     }
 
