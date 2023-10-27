@@ -10,8 +10,9 @@ public class Solution {
     static String[] mors = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println(solution.findNonMinOrMax(new int[]{3, 2,1}));
 
+        solution.isHappy(123);
+        System.out.println("end of main!");
     }
     public boolean containsNearbyDuplicate(int[] nums, int k) {
 
@@ -975,6 +976,101 @@ public class Solution {
             i = j + 1;
         }
         return output;
+
+    }
+
+    public boolean isHappy(int n) {//todo finish this
+        while(n>1) {
+            System.out.println("n value is " + n);
+            int ones = n/10;
+            n = n/10;
+            if(n==1) {
+                System.out.println("got 1");
+                break;
+            }
+        }
+
+        return true;
+    }
+
+    public int sumIndicesWithKSetBits(List<Integer> nums, int k) {
+
+        int index = 0, sum = 0;
+        for(int n: nums) {
+            if(Integer.bitCount(index++) == k) {
+                sum+= n;
+            }
+        }
+        return sum;
+
+    }
+
+    public int[] decode(int[] encoded, int first) {
+
+        int[] result = new int[encoded.length + 1];
+        result[0] = first;
+        for(int i = 0; i < encoded.length; i++) {
+            result[i + 1] = first ^ encoded[i];
+            first = result[i + 1];
+        }
+        return result;
+
+    }
+
+    public String longestPalindrome(String s) {
+
+        if(isPalindrome(s)) return s;
+        int left = 0, right =0, max = 0;
+        int counterStart =0, counterEnd = 0;
+        while( left < s.length() - 1) {
+            right = left + 1;
+            while(right < s.length()) {
+                String temp = s.substring(left, right + 1);
+                if(isPalindrome(temp) && temp.length() > max) {
+                    max = temp.length();
+                    counterStart = left;
+                    counterEnd = right;
+                }
+                right++;
+            }
+            left++;
+
+        }
+        return s.substring(counterStart, counterEnd + 1);
+    }
+
+    private boolean isPalindrome2(String s) {
+        int start = 0, end = s.length() - 1;
+        while(start < end) {
+            if(s.charAt(start) != s.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+
+    }
+
+    public String removeOuterParentheses(String s) {
+
+        StringBuilder sb = new StringBuilder();
+        int i = 0, ctr = 0;
+        while(i < s.length()) {
+            char c = s.charAt(i++);
+            if( c == '('){
+                if(ctr!=0) {
+                    sb.append('(');
+                }
+                ctr++;
+            } else {
+                ctr--;
+                if(ctr!=0) {
+                    sb.append(')');
+                }
+            }
+        }
+        return sb.toString();
 
     }
 
