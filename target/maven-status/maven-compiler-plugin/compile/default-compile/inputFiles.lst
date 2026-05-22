@@ -1,0 +1,5 @@
+/workspaces/workPrep/src/main/java/com/example/bookstore/model/Book.java
+/workspaces/workPrep/src/main/java/com/example/bookstore/BookstoreApplication.java
+/workspaces/workPrep/src/main/java/com/example/bookstore/controller/BookController.java
+/workspaces/workPrep/src/main/java/com/example/bookstore/service/BookService.java
+/workspaces/workPrep/src/main/java/com/example/bookstore/repository/BookRepository.java
